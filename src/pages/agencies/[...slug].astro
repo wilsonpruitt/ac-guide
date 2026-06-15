@@ -34,7 +34,7 @@ const fmt = (date: Date) =>
 <Base title={d.name}>
   <p class="eyebrow">{d.type.replace(/-/g, ' ')}</p>
   <h1>{d.name}</h1>
-  {d.alsoKnownAs && <p><em>{d.alsoKnownAs}</em></p>}
+  {d.alsoKnownAs && <p class="title-italic">{d.alsoKnownAs}</p>}
   {d.summary && <p>{d.summary}</p>}
 
   <dl class="spine-meta">
