@@ -1,0 +1,28 @@
+---
+interface Props { title: string }
+const { title } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} · Guide to Annual Conference</title>
+    <link rel="stylesheet" href="/styles/base.css" />
+  </head>
+  <body>
+    <header class="site">
+      <a class="brand" href="/">Guide to Annual Conference</a>
+      <nav>
+        <a href="/agenda">Agenda</a>
+        <a href="/agencies">Agencies</a>
+        <a href="/questions">Questions</a>
+      </nav>
+    </header>
+    <main><slot /></main>
+    <footer class="site">
+      <p>Río Texas Annual Conference · community-curated ·
+        <a href="https://riotexas.wrootlabs.com">the Atlas</a> for the numbers.</p>
+    </footer>
+  </body>
+</html>

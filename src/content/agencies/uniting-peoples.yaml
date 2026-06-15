@@ -1,0 +1,26 @@
+name: Uniting Peoples Vision Team
+type: vision-team
+parent: uniting-table
+relatesTo:
+- Council of Bishops
+- General Commission on Religion and Race
+- General Commission on the Status and Role of Women
+subBodies:
+- name: Commission on Christian Unity and Interreligious Relationships
+  bodRefs:
+  - ¶642
+- name: Commission on Religion and Race
+  bodRefs:
+  - ¶643
+- name: Commission on the Status and Role of Women
+  bodRefs:
+  - ¶644
+  note: Chair is a woman; a majority of members are women.
+- name: Commission on Communications
+  bodRefs:
+  - ¶646
+- name: Committee on Disability Concerns
+  bodRefs:
+  - ¶653
+summary: Facilitates unity, witness, communication, justice, and intercultural competency across conference
+  life.

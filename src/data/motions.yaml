@@ -1,0 +1,189 @@
+# The three motion tables from the Standing Rules (Motions by Function, Ranking,
+# Non-Ranking), flattened into one list for an interactive helper. `rank` orders the
+# ranking ladder (1 = highest); null = non-ranking. Loaded via the `motions` collection.
+
+- id: adjourn
+  intent: Adjourn the session
+  say: I move that we adjourn.
+  category: privileged
+  rank: 1
+  second: true
+  debatable: false
+  amendable: false
+  vote: majority
+
+- id: question-of-privilege
+  intent: Raise a comfort or process concern (heat, noise, audibility)
+  say: I rise to a question of privilege.
+  category: privileged
+  rank: 2
+  second: false
+  debatable: false
+  amendable: false
+  vote: none
+  note: No vote — the chair rules.
+
+- id: order-of-the-day
+  intent: Call for the scheduled agenda item
+  say: I call for the orders of the day.
+  category: privileged
+  rank: 3
+  second: false
+  debatable: false
+  amendable: false
+  vote: none
+  note: No vote — the chair rules.
+
+- id: table
+  intent: Set the current motion aside
+  say: I move to table the motion.
+  category: subsidiary
+  rank: 4
+  second: true
+  debatable: false
+  amendable: false
+  vote: majority
+
+- id: previous-question
+  intent: End debate and vote now
+  say: I move the previous question.
+  category: subsidiary
+  rank: 5
+  second: true
+  debatable: false
+  amendable: false
+  vote: two-thirds
+
+- id: refer
+  intent: Send it to a committee for study
+  say: I move to refer the matter to committee.
+  category: subsidiary
+  rank: 6
+  second: true
+  debatable: true
+  amendable: true
+  vote: majority
+
+- id: amend
+  intent: Change the wording of the motion on the floor
+  say: I move to amend by [describe].
+  category: subsidiary
+  rank: 7
+  second: true
+  debatable: true
+  amendable: true
+  vote: majority
+
+- id: main-motion
+  intent: Introduce new business
+  say: I move that…
+  category: main
+  rank: 8
+  second: true
+  debatable: true
+  amendable: true
+  vote: majority
+
+- id: adopt-report
+  intent: Adopt a report
+  say: I move that the report be adopted.
+  category: main
+  rank: null
+  second: true
+  debatable: true
+  amendable: false
+  vote: majority
+
+- id: divide-question
+  intent: Vote on parts of a motion separately
+  say: I move to divide the question to consider [specify] separately.
+  category: incidental
+  rank: null
+  second: true
+  debatable: false
+  amendable: true
+  vote: majority
+
+- id: point-of-order
+  intent: Object to a breach of the rules
+  say: I rise to a point of order.
+  category: incidental
+  rank: null
+  second: false
+  debatable: false
+  amendable: false
+  vote: none
+  note: No vote — the chair rules.
+
+- id: parliamentary-inquiry
+  intent: Ask how the rules apply
+  say: Parliamentary inquiry.
+  category: incidental
+  rank: null
+  second: false
+  debatable: false
+  amendable: false
+  vote: none
+  note: No vote — the chair responds.
+
+- id: point-of-information
+  intent: Request information
+  say: Point of information.
+  category: incidental
+  rank: null
+  second: false
+  debatable: false
+  amendable: false
+  vote: none
+  note: No vote — the chair responds.
+
+- id: suspend-rules
+  intent: Set a rule aside temporarily
+  say: I move to suspend the rules so that [specify].
+  category: incidental
+  rank: null
+  second: true
+  debatable: false
+  amendable: false
+  vote: two-thirds
+
+- id: withdraw
+  intent: Withdraw your own motion
+  say: I withdraw my motion.
+  category: incidental
+  rank: null
+  second: false
+  debatable: false
+  amendable: false
+  vote: majority
+
+- id: appeal
+  intent: Challenge the chair's ruling
+  say: I appeal from the decision of the chair.
+  category: incidental
+  rank: null
+  second: true
+  debatable: false
+  amendable: false
+  vote: majority
+
+- id: reconsider
+  intent: Revisit a completed vote
+  say: I move to reconsider the vote on [specify].
+  category: bring-back
+  rank: null
+  second: true
+  debatable: true
+  amendable: false
+  vote: majority
+  note: Debatable only if the motion being reconsidered was debatable.
+
+- id: take-from-table
+  intent: Resume a tabled matter
+  say: I move to take from the table [specify].
+  category: bring-back
+  rank: null
+  second: true
+  debatable: false
+  amendable: false
+  vote: majority

@@ -1,0 +1,25 @@
+name: Transforming Communities Vision Team
+type: vision-team
+parent: uniting-table
+relatesTo:
+- General Board of Church and Society
+- General Board of Global Ministries
+subBodies:
+- name: Board of Church and Society
+  bodRefs:
+  - ¶628
+  note: Names the Peace with Justice Coordinator and the Caretaker of God's Creation Coordinator.
+- name: Board of Global Ministries
+  bodRefs:
+  - ¶632
+- name: Committee on Native American Ministries
+  bodRefs:
+  - ¶654
+- name: Committee on The Advance
+  bodRefs:
+  - ¶823
+- name: Committee on Criminal Justice and Mercy Ministries
+  bodRefs:
+  - ¶657
+summary: Equips and supports congregations around mission, The Advance, ethnic concerns, and justice issues.
+  Includes the Peace with Justice and Caretaker of God's Creation coordinators.

@@ -1,0 +1,22 @@
+name: Finance Table
+alsoKnownAs: Council on Finance and Administration (CF&A)
+type: administrative-agency
+bodRefs:
+- ¶¶611-627
+membershipSize: 16
+relatesTo:
+- General Council on Finance and Administration
+alsoFulfills:
+- name: Commission on Equitable Compensation
+  bodRefs:
+  - ¶625
+subBodies:
+- name: Personnel Committee
+  bodRefs:
+  - ¶613.13
+  membershipSize: 4
+  note: Plus a Finance Table representative and a district superintendent.
+votesOn: action
+agendaOrder: 30
+summary: Builds the conference budget, sets apportionments, and manages conference money. Also serves
+  as the Commission on Equitable Compensation.

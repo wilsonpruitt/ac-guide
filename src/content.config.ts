@@ -1,0 +1,130 @@
+import { defineCollection, reference, z } from 'astro:content';
+import { glob, file } from 'astro/loaders';
+
+/* ------------------------------------------------------------------ *
+ * Three content layers, kept structurally distinct (see HANDOFF.md):  *
+ *   A. agencies            authoritative spine (from the Standing Rules)
+ *   B. agenda / process    evergreen explainers (written once)
+ *   C. annotations / questions   community knowledge, attached to the spine
+ * Plus `motions`: the parliamentary helper data.                      *
+ * ------------------------------------------------------------------ */
+
+/** Layer A — conference bodies. Frontmatter-only data, one YAML file each. */
+const agencies = defineCollection({
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/agencies' }),
+  schema: z.object({
+    name: z.string(),
+    alsoKnownAs: z.string().optional(),
+    type: z.enum([
+      'uniting-table',
+      'vision-team',
+      'administrative-agency',
+      'review-committee',
+      'board',
+    ]),
+    /** Vision teams point at the Uniting Table; a promoted sub-body points at its parent. */
+    parent: reference('agencies').optional(),
+    bodRefs: z.array(z.string()).default([]),
+    membershipSize: z.number().int().positive().optional(),
+    relatesTo: z.array(z.string()).default([]),
+    alsoFulfills: z
+      .array(z.object({ name: z.string(), bodRefs: z.array(z.string()).default([]) }))
+      .default([]),
+    subBodies: z
+      .array(
+        z.object({
+          name: z.string(),
+          bodRefs: z.array(z.string()).default([]),
+          membershipSize: z.number().int().positive().optional(),
+          note: z.string().optional(),
+        }),
+      )
+      .default([]),
+    votesOn: z.enum(['action', 'information', 'both']).optional(),
+    agendaOrder: z.number().optional(),
+    accountableTo: z.string().default('Annual Conference'),
+    summary: z.string().optional(),
+  }),
+});
+
+/** Layer B — evergreen explainers, one per recurring item of business (the agenda spine). */
+const agenda = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/agenda' }),
+  schema: z.object({
+    title: z.string(),
+    order: z.number(),
+    summary: z.string(),
+    votesOn: z.enum(['action', 'information', 'both']).optional(),
+    agency: reference('agencies').optional(),
+    bodRefs: z.array(z.string()).default([]),
+    rulesRefs: z.array(z.string()).default([]),
+    updated: z.coerce.date().optional(),
+  }),
+});
+
+/** Layer B — evergreen explainers for how the body works (process, not a specific item). */
+const process = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/process' }),
+  schema: z.object({
+    title: z.string(),
+    order: z.number().default(0),
+    summary: z.string(),
+    bodRefs: z.array(z.string()).default([]),
+    rulesRefs: z.array(z.string()).default([]),
+    updated: z.coerce.date().optional(),
+  }),
+});
+
+const targetType = z.enum(['agency', 'agenda', 'process', 'data-point', 'rule']);
+
+/** Layer C — institutional knowledge, attached to a spine element by `target.ref`. */
+const annotations = defineCollection({
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/annotations' }),
+  schema: z.object({
+    target: z.object({
+      type: targetType,
+      /** Spine slug, optionally with an anchor: "finance#district-funding". */
+      ref: z.string(),
+    }),
+    body: z.string(),
+    author: z.string(),
+    date: z.coerce.date(),
+    status: z.enum(['draft', 'in-review', 'published', 'superseded']).default('published'),
+    endorsements: z.array(z.string()).default([]),
+    supersededBy: z.string().optional(),
+  }),
+});
+
+/** Layer C — open questions, resolved in place. */
+const questions = defineCollection({
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/questions' }),
+  schema: z.object({
+    target: z.object({ type: targetType, ref: z.string() }),
+    question: z.string(),
+    askedBy: z.string(),
+    asked: z.coerce.date(),
+    status: z.enum(['open', 'answered']).default('open'),
+    answer: z.string().optional(),
+    answeredBy: z.string().optional(),
+    answered: z.coerce.date().optional(),
+  }),
+});
+
+/** Parliamentary helper — the three motion tables from the Standing Rules, one YAML list. */
+const motions = defineCollection({
+  loader: file('./src/data/motions.yaml'),
+  schema: z.object({
+    id: z.string(),
+    intent: z.string(),
+    say: z.string(),
+    category: z.enum(['privileged', 'subsidiary', 'incidental', 'main', 'bring-back']),
+    rank: z.number().nullable().default(null),
+    second: z.boolean(),
+    debatable: z.boolean(),
+    amendable: z.boolean(),
+    vote: z.enum(['majority', 'two-thirds', 'none']),
+    note: z.string().optional(),
+  }),
+});
+
+export const collections = { agencies, agenda, process, annotations, questions, motions };

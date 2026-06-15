@@ -1,0 +1,19 @@
+name: Developing Leaders Vision Team
+type: vision-team
+parent: uniting-table
+relatesTo:
+- General Board of Higher Education and Ministry
+- General Board of Discipleship
+subBodies:
+- name: Board of Higher Education and Campus Ministry
+  bodRefs:
+  - ¶633
+- name: Board of Ordained Ministry
+  bodRefs:
+  - ¶634
+  note: Nominated by the Bishop, elected by the Annual Conference. Reports directly to the conference.
+    Candidate for its own page.
+- name: Lay Leadership Team (Board of Laity)
+  bodRefs:
+  - ¶630
+summary: Calls and equips lay and clergy leaders for the mission field, especially younger leaders.

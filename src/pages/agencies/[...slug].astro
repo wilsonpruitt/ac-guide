@@ -1,0 +1,94 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const agencies = await getCollection('agencies');
+  return agencies.map((agency) => ({ params: { slug: agency.id }, props: { agency } }));
+}
+
+const { agency } = Astro.props;
+const d = agency.data;
+
+let parentName: string | null = null;
+if (d.parent) {
+  const p = await getEntry(d.parent);
+  parentName = p ? p.data.name : null;
+}
+
+const matches = (ref: string) => ref === agency.id || ref.startsWith(agency.id + '#');
+const notes = (await getCollection('annotations')).filter(
+  (n) => n.data.target.type === 'agency' && matches(n.data.target.ref),
+);
+const qs = (await getCollection('questions')).filter(
+  (q) => q.data.target.type === 'agency' && matches(q.data.target.ref),
+);
+
+const votesLabel = (v?: string) =>
+  v === 'information' ? 'For Information Only'
+  : v === 'action' ? 'For Conference Action'
+  : v === 'both' ? 'Action & Information' : '';
+const fmt = (date: Date) =>
+  date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+<Base title={d.name}>
+  <p class="eyebrow">{d.type.replace(/-/g, ' ')}</p>
+  <h1>{d.name}</h1>
+  {d.alsoKnownAs && <p><em>{d.alsoKnownAs}</em></p>}
+  {d.summary && <p>{d.summary}</p>}
+
+  <dl class="spine-meta">
+    {d.bodRefs.length > 0 && (<><dt>Book of Discipline</dt><dd>{d.bodRefs.join(', ')}</dd></>)}
+    {d.membershipSize && (<><dt>Members</dt><dd>{d.membershipSize}</dd></>)}
+    {parentName && (<><dt>Part of</dt><dd>{parentName}</dd></>)}
+    {d.votesOn && (<><dt>At conference</dt><dd>{votesLabel(d.votesOn)}</dd></>)}
+    <dt>Accountable to</dt><dd>{d.accountableTo}</dd>
+    {d.relatesTo.length > 0 && (<><dt>Relates to</dt><dd>{d.relatesTo.join('; ')}</dd></>)}
+  </dl>
+
+  {d.alsoFulfills.length > 0 && (
+    <p>Also fulfills: {d.alsoFulfills.map((f) => `${f.name} (${f.bodRefs.join(', ')})`).join('; ')}.</p>
+  )}
+
+  {d.subBodies.length > 0 && (
+    <section>
+      <h2>Boards, commissions & committees</h2>
+      <ul class="bare">
+        {d.subBodies.map((s) => (
+          <li>
+            {s.name}
+            {s.bodRefs.length > 0 && <span class="pill">{s.bodRefs.join(', ')}</span>}
+            {s.note && <> — {s.note}</>}
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {notes.length > 0 && (
+    <section>
+      <h2>Notes from the floor</h2>
+      {notes.map((n) => (
+        <div class="note">
+          <p>{n.data.body}</p>
+          <p class="who">— {n.data.author}, {fmt(n.data.date)}
+            {n.data.endorsements.length > 0 && ` · confirmed by ${n.data.endorsements.length}`}</p>
+        </div>
+      ))}
+    </section>
+  )}
+
+  {qs.length > 0 && (
+    <section>
+      <h2>Open questions</h2>
+      {qs.map((q) => (
+        <div class={`q ${q.data.status}`}>
+          <p><strong>{q.data.question}</strong></p>
+          {q.data.answer
+            ? <p>{q.data.answer} <span class="who">— {q.data.answeredBy}</span></p>
+            : <p class="who">Unanswered · asked by {q.data.askedBy}</p>}
+        </div>
+      ))}
+    </section>
+  )}
+</Base>

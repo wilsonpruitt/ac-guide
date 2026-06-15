@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+const items = (await getCollection('agenda')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="Agenda">
+  <p class="eyebrow">In the order you'll meet it</p>
+  <h1>The agenda</h1>
+  <ul class="bare">
+    {items.map((i) => (
+      <li><a href={`/agenda/${i.id}`}>{i.data.title}</a> — {i.data.summary}</li>
+    ))}
+  </ul>
+</Base>

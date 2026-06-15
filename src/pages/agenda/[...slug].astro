@@ -1,0 +1,62 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, getEntry, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const items = await getCollection('agenda');
+  return items.map((item) => ({ params: { slug: item.id }, props: { item } }));
+}
+
+const { item } = Astro.props;
+const d = item.data;
+const { Content } = await render(item);
+
+const agencyEntry = d.agency ? await getEntry(d.agency) : null;
+
+const matches = (ref: string) => ref === item.id || ref.startsWith(item.id + '#');
+const notes = (await getCollection('annotations')).filter(
+  (n) => n.data.target.type === 'agenda' && matches(n.data.target.ref),
+);
+const qs = (await getCollection('questions')).filter(
+  (q) => q.data.target.type === 'agenda' && matches(q.data.target.ref),
+);
+
+const votesLabel = (v?: string) =>
+  v === 'information' ? 'For Information Only'
+  : v === 'action' ? 'For Conference Action' : 'On the agenda';
+---
+<Base title={d.title}>
+  <p class="eyebrow">Agenda · {votesLabel(d.votesOn)}</p>
+  <h1>{d.title}</h1>
+  <p>{d.summary}</p>
+  {agencyEntry && (
+    <p><span class="pill"><a href={`/agencies/${agencyEntry.id}`}>{agencyEntry.data.name}</a></span></p>
+  )}
+
+  <article><Content /></article>
+
+  {/* per-year instance renders here from the Atlas/journal — see HANDOFF */}
+
+  {notes.length > 0 && (
+    <section>
+      <h2>Notes from the floor</h2>
+      {notes.map((n) => (
+        <div class="note"><p>{n.data.body}</p><p class="who">— {n.data.author}</p></div>
+      ))}
+    </section>
+  )}
+
+  {qs.length > 0 && (
+    <section>
+      <h2>Open questions</h2>
+      {qs.map((q) => (
+        <div class={`q ${q.data.status}`}>
+          <p><strong>{q.data.question}</strong></p>
+          {q.data.answer
+            ? <p>{q.data.answer}</p>
+            : <p class="who">Unanswered · asked by {q.data.askedBy}</p>}
+        </div>
+      ))}
+    </section>
+  )}
+</Base>

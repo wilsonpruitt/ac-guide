@@ -1,0 +1,12 @@
+# Seeded from the Rio TX Advocates thread as an illustrative example of an open
+# question. Retarget `ref` to the specific rule/section once the exact reference is
+# confirmed. Open questions surface on /questions regardless of their target route.
+target:
+  type: process
+  ref: resolutions
+question: >-
+  Why aren't we in compliance with the last sentence of this rule? Worth asking the
+  bishop directly and recording the answer here.
+askedBy: Joe
+asked: 2026-05-20
+status: open

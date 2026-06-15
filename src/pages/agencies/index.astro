@@ -1,0 +1,34 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+const all = await getCollection('agencies');
+const groups: [string, string][] = [
+  ['uniting-table', 'Uniting Table'],
+  ['vision-team', 'Vision Teams'],
+  ['administrative-agency', 'Administrative Agencies'],
+  ['board', 'Boards'],
+  ['review-committee', 'Review'],
+];
+---
+<Base title="Agencies">
+  <p class="eyebrow">Conference bodies</p>
+  <h1>Agencies & vision teams</h1>
+  {groups.map(([type, label]) => {
+    const items = all
+      .filter((a) => a.data.type === type)
+      .sort((a, b) => a.data.name.localeCompare(b.data.name));
+    return items.length ? (
+      <section>
+        <h2>{label}</h2>
+        <ul class="bare">
+          {items.map((a) => (
+            <li>
+              <a href={`/agencies/${a.id}`}>{a.data.name}</a>
+              {a.data.bodRefs.length > 0 && <span class="pill">{a.data.bodRefs.join(', ')}</span>}
+            </li>
+          ))}
+        </ul>
+      </section>
+    ) : null;
+  })}
+</Base>

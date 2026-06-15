@@ -1,0 +1,45 @@
+name: Vitalizing Congregations Vision Team
+type: vision-team
+parent: uniting-table
+relatesTo:
+- General Board of Discipleship
+- General Board of Global Ministries
+subBodies:
+- name: Board of Discipleship
+  bodRefs:
+  - ¶629
+- name: Committee on Congregational Development and Revitalization
+  bodRefs:
+  - ¶632.5e
+- name: Committee on Ethnic Local Church Concerns
+  bodRefs:
+  - ¶631
+- name: Committee on Parish and Community Development
+  bodRefs:
+  - ¶632.5
+- name: Commission on the Small Membership Church
+  bodRefs:
+  - ¶645
+  - ¶632.5i
+- name: Committee on New Church Development
+  bodRefs:
+  - ¶633.5e-h
+  - ¶630.3
+- name: Council on Children's Ministries
+  note: Plans, visions, and advocates for children within the conference.
+- name: Council on Older Adult Ministries
+  bodRefs:
+  - ¶651.3a-j
+- name: Committee on Hispanic/Latino Ministries
+  bodRefs:
+  - ¶655
+  note: At least one-third of members are Hispanic/Latino persons.
+- name: Youth Ministries Council
+  bodRefs:
+  - ¶649
+  note: 3–5 youth per district; no more than one-third adults.
+- name: Young Adult Ministry Council
+  bodRefs:
+  - ¶650
+summary: Develops and deploys resources for the mission of the local church and the restoring of congregational
+  vitality.

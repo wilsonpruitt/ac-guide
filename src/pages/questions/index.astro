@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+const qs = await getCollection('questions');
+const open = qs.filter((q) => q.data.status === 'open');
+const answered = qs.filter((q) => q.data.status === 'answered');
+---
+<Base title="Questions">
+  <p class="eyebrow">Working it out together</p>
+  <h1>Open questions</h1>
+  <p>Things the community is still resolving. Answer one and it moves to resolved.</p>
+  <ul class="bare">
+    {open.map((q) => (
+      <li><strong>{q.data.question}</strong> <span class="pill">{q.data.askedBy}</span></li>
+    ))}
+  </ul>
+  {answered.length > 0 && (
+    <section>
+      <h2>Answered</h2>
+      <ul class="bare">{answered.map((q) => <li>{q.data.question}</li>)}</ul>
+    </section>
+  )}
+</Base>

@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+const agencies = await getCollection('agencies');
+const agenda = (await getCollection('agenda')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="Home">
+  <p class="eyebrow">Río Texas Annual Conference</p>
+  <h1>A field guide to Annual Conference</h1>
+  <p>What each part of the agenda means, what each body does, and how to take part —
+    written by the people in the room, not conference staff. New here? Walk the agenda in order.</p>
+
+  <h2>The agenda, in order</h2>
+  <ul class="bare">
+    {agenda.map((item) => (
+      <li><a href={`/agenda/${item.id}`}>{item.data.title}</a> — {item.data.summary}</li>
+    ))}
+  </ul>
+
+  <h2>Conference bodies</h2>
+  <p><a href="/agencies">Browse all {agencies.length} agencies and vision teams →</a></p>
+
+  <p class="eyebrow" style="margin-top:2rem;">For the numbers</p>
+  <p><a href="https://riotexas.wrootlabs.com">The Río Texas Atlas →</a> —
+    churches, districts, finance, 2000–2024.</p>
+</Base>

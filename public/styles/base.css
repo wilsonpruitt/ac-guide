@@ -1,0 +1,35 @@
+/* PLACEHOLDER STYLING — intentionally minimal. The visual design pass is deferred
+   (see HANDOFF.md → "Frontend design"). This is plumbing, not the design.
+   The one idea worth keeping: spine content and community content look different.
+   Official/spine = neutral; community note = warm left rule; open question = red rule. */
+:root {
+  --ink:#1a1a1a; --muted:#6a6a6a; --line:#e4e4e4; --bg:#fff;
+  --community:#b5651d; --open:#c0392b; --resolved:#1f8a4c; --link:#0a58ca;
+}
+* { box-sizing:border-box; }
+body { margin:0; color:var(--ink); background:var(--bg);
+  font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+main { max-width:46rem; margin:0 auto; padding:1.5rem 1.25rem 4rem; }
+header.site, footer.site { max-width:46rem; margin:0 auto; padding:1rem 1.25rem;
+  display:flex; gap:.5rem 1rem; align-items:baseline; flex-wrap:wrap; }
+header.site { border-bottom:1px solid var(--line); }
+footer.site { border-top:1px solid var(--line); color:var(--muted); font-size:.85rem; margin-top:2rem; }
+.brand { font-weight:700; text-decoration:none; color:var(--ink); margin-right:auto; }
+nav a { margin-left:1rem; }
+a { color:var(--link); }
+h1 { line-height:1.15; margin:.2rem 0 .6rem; }
+h2 { margin-top:2rem; }
+.eyebrow { text-transform:uppercase; letter-spacing:.08em; font-size:.72rem; color:var(--muted); margin:0; }
+.spine-meta { border:1px solid var(--line); border-radius:.4rem; padding:.5rem 1rem; margin:1rem 0; }
+.spine-meta dt { color:var(--muted); font-size:.78rem; text-transform:uppercase; letter-spacing:.04em; margin-top:.5rem; }
+.spine-meta dd { margin:.1rem 0 0; }
+.note { border-left:3px solid var(--community); padding:.4rem 0 .4rem .9rem; margin:.9rem 0; }
+.note .who { font-size:.8rem; color:var(--muted); }
+.q { border-left:3px solid var(--open); padding:.4rem 0 .4rem .9rem; margin:.9rem 0; }
+.q.answered { border-left-color:var(--resolved); }
+.q .who { font-size:.8rem; color:var(--muted); }
+.pill { display:inline-block; font-size:.72rem; border:1px solid var(--line); border-radius:1rem;
+  padding:.02rem .55rem; color:var(--muted); margin-left:.4rem; }
+.pill a { text-decoration:none; }
+ul.bare { list-style:none; padding:0; margin:.5rem 0; }
+ul.bare li { padding:.4rem 0; border-bottom:1px solid var(--line); }

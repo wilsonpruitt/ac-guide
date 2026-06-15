@@ -1,0 +1,15 @@
+# Seeded from the Rio TX Advocates thread as an illustrative example of Layer C:
+# institutional knowledge attached to a specific data point. Replace author/date
+# with real attribution (or a handle) before publishing.
+target:
+  type: agenda
+  ref: finance#district-funding
+body: >-
+  One thing on the district piece: the old funding formula was lines F and H. H isn't
+  on this year's document, and it's only partially in this year's Pre-Conference Journal
+  — but H was the actual amount the districts had discretion over.
+author: Rachel
+date: 2026-05-20
+status: published
+endorsements:
+  - Todd
