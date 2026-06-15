@@ -4,6 +4,7 @@ import { getCollection, getEntry, render } from 'astro:content';
 import PerYearFinance from '../../components/PerYearFinance.astro';
 import NominationsSlate from '../../components/NominationsSlate.astro';
 import BodRefs from '../../components/BodRefs.astro';
+import AskQuestion from '../../components/AskQuestion.astro';
 
 /** Registry of per-year instance renderers, keyed by the agenda `perYear` field. */
 const perYearComponents = { finance: PerYearFinance, nominations: NominationsSlate };
@@ -69,4 +70,6 @@ const votesLabel = (v?: string) =>
       ))}
     </section>
   )}
+
+  <AskQuestion ref={item.id} page={`Agenda · ${d.title}`} />
 </Base>

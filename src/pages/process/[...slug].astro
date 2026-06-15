@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { getCollection, render } from 'astro:content';
+import AskQuestion from '../../components/AskQuestion.astro';
 
 export async function getStaticPaths() {
   const items = await getCollection('process');
@@ -58,4 +59,6 @@ const fmt = (date: Date) =>
       ))}
     </section>
   )}
+
+  <AskQuestion ref={item.id} page={`Process · ${d.title}`} />
 </Base>

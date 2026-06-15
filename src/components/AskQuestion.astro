@@ -1,0 +1,68 @@
+---
+/** Inline "Ask a question about this" widget. Posts the question + the spine
+ *  ref to /api/ask, which files it as a GitHub issue for review. */
+interface Props { ref: string; page?: string }
+const { ref, page = '' } = Astro.props;
+---
+<div class="ask" data-ref={ref} data-page={page}>
+  <button type="button" class="ask-toggle" aria-expanded="false">Ask a question about this →</button>
+  <form class="ask-form" hidden>
+    <textarea name="question" rows="2" maxlength="1000" required
+      placeholder="What would you like to know about this? It'll be reviewed before it appears."></textarea>
+    <div class="ask-row">
+      <input type="text" name="name" placeholder="Your name (optional)" maxlength="80" autocomplete="name" />
+      <input type="text" name="website" class="ask-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <button type="submit" class="ask-submit">Send</button>
+    </div>
+    <p class="ask-status" role="status" aria-live="polite"></p>
+  </form>
+</div>
+
+<script>
+  for (const root of document.querySelectorAll('.ask')) {
+    const toggle = root.querySelector('.ask-toggle');
+    const form = root.querySelector('.ask-form');
+    const status = root.querySelector('.ask-status');
+    if (!toggle || !form || !status) continue;
+
+    toggle.addEventListener('click', () => {
+      const willOpen = form.hidden;
+      form.hidden = !willOpen;
+      toggle.setAttribute('aria-expanded', String(willOpen));
+      if (willOpen) form.querySelector('textarea')?.focus();
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const question = String(data.get('question') || '').trim();
+      if (question.length < 5) { status.textContent = 'Please write a little more.'; return; }
+      const submit = form.querySelector('.ask-submit');
+      if (submit) submit.disabled = true;
+      status.textContent = 'Sending…';
+      try {
+        const res = await fetch('/api/ask', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ref: root.dataset.ref,
+            page: root.dataset.page,
+            question,
+            name: String(data.get('name') || ''),
+            website: String(data.get('website') || ''),
+          }),
+        });
+        if (res.ok) {
+          form.innerHTML = '<p class="ask-status">Thanks — your question was sent for review.</p>';
+        } else {
+          const d = await res.json().catch(() => ({}));
+          status.textContent = d.error || 'Something went wrong. Please try again later.';
+          if (submit) submit.disabled = false;
+        }
+      } catch {
+        status.textContent = 'Network error. Please try again.';
+        if (submit) submit.disabled = false;
+      }
+    });
+  }
+</script>
