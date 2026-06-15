@@ -162,6 +162,11 @@ ul.bare li:last-child { border-bottom:0; }
 .slate-table td { white-space:normal; }
 .py-note-plain { font-size:.88rem; color:var(--slate-600); }
 .scan-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:.4rem 1.2rem; }
+.roster-names { list-style:none; padding:0; margin:.8rem 0; columns:2; column-gap:1.6rem; }
+@media (min-width:40rem) { .roster-names { columns:3; } }
+.roster-names li { padding:.3rem 0; border-bottom:1px solid var(--slate-100); break-inside:avoid;
+  font-size:.92rem; }
+.roster-names .role { display:block; font-size:.72rem; color:var(--reed-deep); }
 
 /* ---------- Home: lede ---------- */
 .lede { font-size:1.12rem; color:var(--slate-600); max-width:var(--measure); }

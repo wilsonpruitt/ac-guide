@@ -1,10 +1,13 @@
 ---
 import rosters from '../data/board-rosters-2026.json';
+import directory from '../data/board-rosters-directory-2025.json';
 
 interface Props { slug: string }
 const { slug } = Astro.props;
 
 const board = (rosters.boards as Record<string, any>)[slug];
+// Bodies not in the nominations report fall back to the journal directory (names only).
+const dir = !board ? (directory.boards as Record<string, any>)[slug] : null;
 
 const DISTRICT: Record<string, string> = { N: 'North', C: 'Central', S: 'South', RTC: 'Conference' };
 const STATUS: Record<string, string> = { CL: 'Clergy', L: 'Lay' };
@@ -58,5 +61,21 @@ const nominees = board?.members?.filter((m: any) => m.nominee).length ?? 0;
         </tbody>
       </table>
     </div>
+  </section>
+)}
+
+{dir && (
+  <section class="roster">
+    <div class="roster-head">
+      <h2>Members</h2>
+      <span class="py-source">{directory.source}</span>
+    </div>
+    <ul class="roster-names">
+      {dir.members.map((m: any) => (
+        <li>{m.name}{m.role && <span class="role">{m.role}</span>}</li>
+      ))}
+    </ul>
+    <p class="py-note-plain">This body wasn't up for election in {rosters.year}, so its members
+      come from last year's conference journal — names only. Verify against a current source.</p>
   </section>
 )}

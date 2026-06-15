@@ -1,0 +1,65 @@
+{
+  "_comment": "Members for conference bodies NOT in the 2026 nominations report (no seats up for election this year). Transcribed from the Rio Texas Conference Journal 2025, 'Staff, Boards, and Delegates' organization directory (pp. B-5–B-9). NAMES + leadership roles only — the journal directory does not carry district/status/gender/race. This is LAST YEAR'S roster; verify against a current source. Role markers: (C/CH)=Chair, (VC)=Vice Chair, (T)=Treasurer, (CS)=Conference Secretary, (EO)=Ex Officio; other codes in the journal (SL/CL/S/CM) are omitted as ambiguous. Obvious OCR typos in the journal corrected (e.g. Payn→Payne, Books→Brooks).",
+  "source": "Río Texas Conference Journal 2025 (organization directory)",
+  "year": 2025,
+  "boards": {
+    "uniting-table": {
+      "members": [
+        {"name": "Ray Altman"}, {"name": "Amanda Banda"}, {"name": "Paul Barton"},
+        {"name": "Tracey Beadle"}, {"name": "Sharla Bell"}, {"name": "David Brewster-Acosta"},
+        {"name": "Minerva Briones"}, {"name": "Parker Brown"}, {"name": "Kim Burke"},
+        {"name": "John Burnam"}, {"name": "Tanya Campen"}, {"name": "Robert Clark, II"},
+        {"name": "Sally Cook"}, {"name": "John Cooper, Jr."}, {"name": "Pamela Dykehouse"},
+        {"name": "Cynthia Engstrom"}, {"name": "Cynthia Fierro Harvey", "role": "Ex Officio"},
+        {"name": "Aaron A. Gonzalez"}, {"name": "Abigail Gutierrez"}, {"name": "Jorge Herrera"},
+        {"name": "Cynthia Johnson"}, {"name": "Priscilla Leal"}, {"name": "Reagan Leal"},
+        {"name": "Tony LoBasso"}, {"name": "Isabella Lopez", "role": "Chair"},
+        {"name": "Chuck McGarity"}, {"name": "Kathryn McNeely"}, {"name": "Robert Ortiz"},
+        {"name": "Priscilla Patterson"}, {"name": "David Payne"}, {"name": "Nohemi Ramirez"},
+        {"name": "Pamela E. Ray"}, {"name": "Lisa Rush"}, {"name": "Maribel Vazquez"},
+        {"name": "Abel Vega, Jr."}, {"name": "Michelle Vernone"},
+        {"name": "Guadalupe Villalpando-Stewart"}, {"name": "Robert Charles Waddle"},
+        {"name": "Kendall Waller"}, {"name": "Diana Woods"}, {"name": "Adrienne Zermeno"}
+      ]
+    },
+    "finance-table": {
+      "members": [
+        {"name": "Tracey Beadle"}, {"name": "Fernanda Casar"}, {"name": "Kevin Collins"},
+        {"name": "Sally Cook"}, {"name": "Natalie Diaz"}, {"name": "Cynthia Fierro Harvey"},
+        {"name": "Lavonne Garrison", "role": "Chair"}, {"name": "Oscar Garza, IV"},
+        {"name": "Kenneth Girdy"}, {"name": "Aaron A. Gonzalez"}, {"name": "Adria Maylone-Gomez"},
+        {"name": "Mark R. Mitchell"}, {"name": "Jose Palos"}, {"name": "James Roberson"},
+        {"name": "Martin Rodriguez"}, {"name": "Valerie Slade"},
+        {"name": "Jonathan Snape", "role": "Vice Chair"}, {"name": "Joe Tognetti"},
+        {"name": "Kyle Toomire"}, {"name": "Maribel Vazquez"},
+        {"name": "Abel Vega, Jr.", "role": "Ex Officio"}, {"name": "Kendall Waller", "role": "Treasurer"},
+        {"name": "Teresa Welborn"}, {"name": "Becky Ysaguirre"}
+      ]
+    },
+    "developing-leaders": {
+      "members": [
+        {"name": "Cary Boddeker"}, {"name": "Minerva Briones"}, {"name": "Tanya Campen"},
+        {"name": "David Hensley"}, {"name": "Rick Mantooth"}, {"name": "Charles McGarity"},
+        {"name": "Mark Mitchell"}, {"name": "Shiloh Morris"}, {"name": "Priscilla Patterson"},
+        {"name": "Pamela E. Ray", "role": "Chair"}, {"name": "Kevin Reed"},
+        {"name": "Brooks Schuelke"}, {"name": "Abel Vega, Jr."}, {"name": "Jerimey Wicke"},
+        {"name": "Elizabeth Wright"}
+      ]
+    },
+    "transforming-communities": {
+      "members": [
+        {"name": "Bonnie Bevers"}, {"name": "Mark Brechin"}, {"name": "Minerva Briones"},
+        {"name": "Robert Clark, II"}, {"name": "Cynthia Engstrom"}, {"name": "Thelma Herrera Flores"},
+        {"name": "Cynthia Johnson"}, {"name": "Debra Johnson"}, {"name": "Nancy Mossman"},
+        {"name": "Carolyn Pittman"}, {"name": "Wilda Reyes"}, {"name": "Lisa Winnek Rush"},
+        {"name": "Victoria Schwarz"}, {"name": "Abel Vega, Jr."}, {"name": "Diana Woods", "role": "Chair"},
+        {"name": "Becky Harrell Wright"}, {"name": "Rachel Ruth Wright", "role": "Ex Officio"}
+      ]
+    },
+    "administrative-review": {
+      "members": [
+        {"name": "Paul Allan"}, {"name": "Paul Barton"}, {"name": "Paul Escamilla"}
+      ]
+    }
+  }
+}
