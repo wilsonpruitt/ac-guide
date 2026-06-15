@@ -58,8 +58,9 @@ const agenda = defineCollection({
     agency: reference('agencies').optional(),
     bodRefs: z.array(z.string()).default([]),
     rulesRefs: z.array(z.string()).default([]),
-    /** Key of a per-year data instance to render into this page (see PerYearFinance). */
-    perYear: z.enum(['finance']).optional(),
+    /** Key of a per-year data instance to render into this page (see the registry
+     *  in pages/agenda/[...slug].astro). */
+    perYear: z.enum(['finance', 'nominations']).optional(),
     updated: z.coerce.date().optional(),
   }),
 });

@@ -142,5 +142,26 @@ ul.bare li:last-child { border-bottom:0; }
 .py-trend .down { color:var(--danger); }
 .py-trend .up { color:var(--ok); }
 
+/* ---------- Board rosters & nominations slate (per-year) ---------- */
+.roster { margin:2.4rem 0; }
+.roster-head { display:flex; justify-content:space-between; align-items:baseline; gap:.5rem; flex-wrap:wrap; }
+.roster-head h2 { margin:0; }
+.roster-elect { font-size:.92rem; background:var(--ivory); border:1px solid var(--slate-100);
+  border-left:3px solid var(--reed); border-radius:0 6px 6px 0; padding:.55rem .8rem; }
+.is-nominee-key { background:rgba(201,168,106,.28); padding:0 .25rem; border-radius:3px; }
+.roster-scroll { overflow-x:auto; }
+.roster-table { width:100%; border-collapse:collapse; margin:.8rem 0; font-size:.88rem; }
+.roster-table th, .roster-table td { text-align:left; padding:.4rem .6rem; border-bottom:1px solid var(--slate-100);
+  vertical-align:top; white-space:nowrap; }
+.roster-table th { font-size:.7rem; text-transform:uppercase; letter-spacing:.04em; color:var(--fen-mist); font-weight:600; }
+.roster-table tr.is-nominee { background:rgba(201,168,106,.16); }
+.roster-table tr.is-nominee td:first-child { box-shadow:inset 3px 0 0 var(--reed); font-weight:500; }
+.roster-table tr.is-vacant td { color:var(--slate-300); font-style:italic; }
+.roster-table .tag { display:inline-block; margin-left:.5rem; font-size:.66rem; text-transform:uppercase;
+  letter-spacing:.04em; color:var(--reed-deep); border:1px solid var(--reed); border-radius:4px; padding:0 .35rem; }
+.slate-table td { white-space:normal; }
+.py-note-plain { font-size:.88rem; color:var(--slate-600); }
+.scan-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:.4rem 1.2rem; }
+
 /* ---------- Home: lede ---------- */
 .lede { font-size:1.12rem; color:var(--slate-600); max-width:var(--measure); }

@@ -1,0 +1,72 @@
+---
+import { getCollection } from 'astro:content';
+import rosters from '../data/board-rosters-2026.json';
+
+const e = rosters.election;
+const ds = rosters.diversity_scan;
+
+// Pair each board with its agency name + slug for links, in report order.
+const agencies = await getCollection('agencies');
+const nameFor = (slug: string) => agencies.find((a) => a.id === slug)?.data.name ?? slug;
+
+const boards = Object.entries(rosters.boards as Record<string, any>).map(([slug, b]) => ({
+  slug,
+  name: nameFor(slug),
+  to_elect: b.to_elect,
+  nominees: b.members.filter((m: any) => m.nominee).map((m: any) => m.name),
+}));
+---
+<section class="per-year">
+  <div class="py-head">
+    <h2>This year's slate</h2>
+    <span class="py-source">{rosters.source}</span>
+  </div>
+
+  <div class="py-stats">
+    <div class="stat">
+      <span class="stat-label">Seats up for election</span>
+      <span class="stat-value">{e.total_to_elect}</span>
+      <span class="stat-sub">across {boards.filter((b) => b.to_elect > 0).length} boards</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">Slate presented</span>
+      <span class="stat-value" style="font-size:1.05rem">{e.slate_presented}</span>
+      <span class="stat-sub">substitutions by {e.substitution_deadline}</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">Ratified</span>
+      <span class="stat-value" style="font-size:1.05rem">{e.ratification}</span>
+      <span class="stat-sub">including floor substitutions</span>
+    </div>
+  </div>
+
+  <p class="py-note-plain">{e.note}</p>
+
+  <table class="roster-table slate-table">
+    <thead><tr><th>Board</th><th>Seats</th><th>Proposed nominees</th></tr></thead>
+    <tbody>
+      {boards.map((b) => (
+        <tr>
+          <td><a href={`/agencies/${b.slug}`}>{b.name}</a></td>
+          <td>{b.to_elect}</td>
+          <td>{b.nominees.length ? b.nominees.join(', ') : '—'}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <details class="py-trend">
+    <summary>Conference-wide diversity scan (pre-election)</summary>
+    <p class="py-source">{ds.note}</p>
+    <div class="scan-grid">
+      {[['Status', ds.status], ['Gender', ds.gender], ['District', ds.district], ['Race / ethnicity', ds.race]].map(([label, rows]: any) => (
+        <table class="roster-table">
+          <thead><tr><th>{label}</th><th>No. / total</th><th>%</th></tr></thead>
+          <tbody>
+            {rows.map((r: string[]) => (<tr><td>{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td></tr>))}
+          </tbody>
+        </table>
+      ))}
+    </div>
+  </details>
+</section>

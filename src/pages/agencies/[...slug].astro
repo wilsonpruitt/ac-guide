@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { getCollection, getEntry } from 'astro:content';
+import BoardRoster from '../../components/BoardRoster.astro';
 
 export async function getStaticPaths() {
   const agencies = await getCollection('agencies');
@@ -64,6 +65,8 @@ const fmt = (date: Date) =>
       </ul>
     </section>
   )}
+
+  <BoardRoster slug={agency.id} />
 
   {notes.length > 0 && (
     <section>

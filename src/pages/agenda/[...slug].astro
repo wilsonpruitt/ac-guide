@@ -2,9 +2,10 @@
 import Base from '../../layouts/Base.astro';
 import { getCollection, getEntry, render } from 'astro:content';
 import PerYearFinance from '../../components/PerYearFinance.astro';
+import NominationsSlate from '../../components/NominationsSlate.astro';
 
 /** Registry of per-year instance renderers, keyed by the agenda `perYear` field. */
-const perYearComponents = { finance: PerYearFinance };
+const perYearComponents = { finance: PerYearFinance, nominations: NominationsSlate };
 
 export async function getStaticPaths() {
   const items = await getCollection('agenda');

@@ -1,0 +1,62 @@
+---
+import rosters from '../data/board-rosters-2026.json';
+
+interface Props { slug: string }
+const { slug } = Astro.props;
+
+const board = (rosters.boards as Record<string, any>)[slug];
+
+const DISTRICT: Record<string, string> = { N: 'North', C: 'Central', S: 'South', RTC: 'Conference' };
+const STATUS: Record<string, string> = { CL: 'Clergy', L: 'Lay' };
+const RACE: Record<string, string> = {
+  'A/A': 'African American', AF: 'African', ASI: 'Asian', E: 'Egyptian',
+  'H/L': 'Hispanic/Latino', NA: 'Native American', W: 'White',
+};
+const GENDER: Record<string, string> = { M: 'Male', F: 'Female', NB: 'Non-binary' };
+
+// Some boards label the role column "Position", others give a class year.
+const hasPos = board?.members?.some((m: any) => m.pos);
+const hasClass = board?.members?.some((m: any) => m.class);
+const nominees = board?.members?.filter((m: any) => m.nominee).length ?? 0;
+---
+{board && (
+  <section class="roster">
+    <div class="roster-head">
+      <h2>This year's members</h2>
+      <span class="py-source">As of {rosters.as_of} · {rosters.year} nominations report</span>
+    </div>
+    {board.to_elect > 0 && (
+      <p class="roster-elect">
+        <strong>{board.to_elect}</strong>{' '}{board.to_elect === 1 ? 'seat is' : 'seats are'} up for
+        election this year — shown <span class="is-nominee-key">highlighted</span> below.
+        See the <a href="/agenda/nominations">full slate and how to nominate</a>.
+      </p>
+    )}
+    <div class="roster-scroll">
+      <table class="roster-table">
+        <thead>
+          <tr>
+            <th>Member</th>
+            {(hasPos || hasClass) && <th>{hasClass ? 'Class' : 'Position'}</th>}
+            <th>District</th>
+            <th>Status</th>
+            <th>Gender</th>
+            <th>Race / ethnicity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {board.members.map((m: any) => (
+            <tr class={m.nominee ? 'is-nominee' : m.vacant ? 'is-vacant' : ''}>
+              <td>{m.name}{m.nominee && <span class="tag">up for election</span>}</td>
+              {(hasPos || hasClass) && <td>{m.class ?? m.pos ?? ''}</td>}
+              <td>{m.vacant ? '—' : (DISTRICT[m.district] ?? m.district ?? '—')}</td>
+              <td>{m.vacant ? '—' : (STATUS[m.status] ?? m.status ?? '—')}</td>
+              <td>{m.vacant ? '—' : (GENDER[m.gender] ?? m.gender ?? '—')}</td>
+              <td>{m.vacant ? '—' : (RACE[m.race] ?? m.race ?? '—')}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+)}

@@ -6,6 +6,7 @@ votesOn: action
 agency: nominations
 bodRefs: ["¶610.5"]
 rulesRefs: ["25"]
+perYear: nominations
 updated: 2026-01-01
 ---
 
@@ -23,7 +24,3 @@ The committee brings a **preliminary report** early, which includes the process 
 **nominations from the floor**, and a **final report** acted on later in the session
 (Rule 25). If you want to nominate someone, the preliminary report is the moment to
 learn how.
-
-## What's up this year
-
-<!-- per-year instance -->

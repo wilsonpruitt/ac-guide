@@ -1,0 +1,170 @@
+{
+  "_comment": "Per-year board rosters + election slate, transcribed from the RTC Committee on Nominations Report to Annual Conference 2026 (FINAL 06.05.2026 + Addendum, updated 06.08.26). Nominees up for election are the shaded rows in the report (nominee:true). Hand-maintained yearly from the nominations report — there is no structured upstream source. Codes: district N/C/S/RTC; status CL=Clergy, L=Lay; race A/A=African American, AF=African, ASI=Asian, E=Egyptian, H/L=Hispanic/Latino, NA=Native American, W=White.",
+  "year": 2026,
+  "as_of": "2026-06-08",
+  "source": "RTC Committee on Nominations Report to AC 2026 (FINAL 06.05.2026 + Addendum)",
+  "election": {
+    "total_to_elect": 14,
+    "slate_presented": "Friday, June 19 (morning)",
+    "substitution_deadline": "5:00 p.m. Friday, June 19",
+    "ratification": "Saturday, June 20 (morning)",
+    "note": "Delegates may submit substitute nominations using the provided form by the deadline. The slate, including any from-the-floor substitutions, is presented for finalization and ratification on Saturday. All nominees have affirmed their willingness to serve if elected."
+  },
+  "diversity_scan": {
+    "note": "Conference-wide pre-election scan across all boards; proposed 2026 nominees are not included.",
+    "status": [["Clergy", "124 / 235", "53%"], ["Lay", "111 / 235", "47%"]],
+    "gender": [["Male", "101 / 231", "44%"], ["Female", "130 / 231", "56%"]],
+    "district": [["North", "75 / 220", "34%"], ["Central", "109 / 220", "50%"], ["South", "36 / 220", "16%"]],
+    "race": [["White", "126 / 235", "54%"], ["Black, Indigenous & People of Color (BIPOC)", "108 / 235", "46%"]]
+  },
+  "boards": {
+    "vitalizing-congregations": {
+      "to_elect": 1,
+      "members": [
+        {"pos": "Chairperson", "name": "Maribel Vazquez", "district": "C", "status": "CL", "gender": "F", "race": "H/L"},
+        {"pos": "Discipleship", "name": "Adam Knapp", "district": "N", "status": "CL", "gender": "M", "race": "W"},
+        {"pos": "Discipleship", "name": "Robert Perales", "district": "S", "status": "CL", "gender": "M", "race": "H/L"},
+        {"pos": "Congregational Development & Revitalization", "name": "Barbara Dyke", "district": "C", "status": "CL", "gender": "F", "race": "W"},
+        {"pos": "Congregational Development & Revitalization", "name": "Scott Nichols", "district": "C", "status": "CL", "gender": "M", "race": "W"},
+        {"pos": "Ethnic Local Church Concerns", "name": "Dionisio Salazar", "district": "N", "status": "L", "gender": "M", "race": "H/L"},
+        {"pos": "Ethnic Local Church Concerns", "name": "Gricelda Careaga", "district": "S", "status": "CL", "gender": "F", "race": "H/L"},
+        {"pos": "Parish and Community Development", "name": "Joseph Tobias", "district": "N", "status": "CL", "gender": "M", "race": "AF"},
+        {"pos": "Parish and Community Development", "name": "John Fletcher", "district": "C", "status": "CL", "gender": "M", "race": "H/L", "nominee": true},
+        {"pos": "Small Membership Church", "name": "Robert Knappage", "district": "C", "status": "CL", "gender": "M", "race": "W"},
+        {"pos": "Small Membership Church", "name": "Karen Boehk", "district": "N", "status": "CL", "gender": "F", "race": "W"},
+        {"pos": "New Church Development", "name": "Steve Smith", "district": "C", "status": "L", "gender": "M", "race": "W"},
+        {"pos": "New Church Development", "name": "Cody Logan", "district": "C", "status": "CL", "gender": "M", "race": "W"},
+        {"pos": "Children's Ministries", "name": "Deandra Palacio", "district": "C", "status": "L", "gender": "F", "race": "W"},
+        {"pos": "Children's Ministries", "name": "Karla Samiento", "district": "N", "status": "L", "gender": "F", "race": "W"},
+        {"pos": "Older Adult Ministries", "name": "Richard Young", "district": "N", "status": "L", "gender": "M", "race": "W"},
+        {"pos": "Older Adult Ministries", "name": "Deborah Webster", "district": "N", "status": "L", "gender": "F", "race": "A/A"},
+        {"pos": "Hispanic/Latino Ministries", "name": "Fernanda Casar", "district": "N", "status": "CL", "gender": "F", "race": "H/L"},
+        {"pos": "Hispanic/Latino Ministries", "name": "Priscilla Patterson", "district": "S", "status": "L", "gender": "F", "race": "H/L"},
+        {"pos": "United Women in Faith", "name": "Minerva Briones", "district": "C", "status": "L", "gender": "F", "race": "H/L"},
+        {"pos": "United Methodist Men", "name": "Kyron Green", "district": "N", "status": "L", "gender": "M", "race": "A/A"},
+        {"pos": "Youth Ministries Council", "name": "Named YMC Rep.", "vacant": true},
+        {"pos": "Young Adult Ministry Council", "name": "Saralyn Herrera", "district": "N", "status": "L", "gender": "F", "race": "H/L"}
+      ]
+    },
+    "committee-on-the-episcopacy": {
+      "to_elect": 1,
+      "members": [
+        {"name": "Cynthia Fierro Harvey – Bishop", "district": "RTC", "status": "CL", "gender": "F", "race": "H/L"},
+        {"name": "Jay Brim", "district": "N", "status": "L", "gender": "M", "race": "W"},
+        {"name": "Brooks Schuelke", "district": "N", "status": "L", "gender": "M", "race": "W"},
+        {"name": "Daesub Han", "district": "N", "status": "CL", "gender": "M", "race": "ASI"},
+        {"name": "Minerva Canales", "district": "S", "status": "L", "gender": "F", "race": "H/L"},
+        {"name": "Lupina Villapando Stewart – Chair", "district": "C", "status": "CL", "gender": "F", "race": "H/L"},
+        {"name": "Kevin Reed", "district": "N", "status": "L", "gender": "M", "race": "W"},
+        {"name": "Teresa Keese", "district": "C", "status": "L", "gender": "F", "race": "W"},
+        {"name": "Claire Sharp", "district": "N", "status": "L", "gender": "F", "race": "W", "nominee": true},
+        {"name": "Robert Perales", "district": "S", "status": "CL", "gender": "M", "race": "H/L"},
+        {"name": "Rachel Wright", "district": "N", "status": "L", "gender": "F", "race": "W"},
+        {"name": "James Amerson", "district": "S", "status": "CL", "gender": "M", "race": "A/A"},
+        {"name": "Jason Adams", "district": "C", "status": "CL", "gender": "M", "race": "W"},
+        {"name": "Cynthia Engstrom", "district": "C", "status": "CL", "gender": "F", "race": "W"}
+      ]
+    },
+    "board-of-trustees": {
+      "to_elect": 3,
+      "members": [
+        {"name": "Ed Smith", "class": "2027", "district": "N", "status": "L", "gender": "M", "race": "W"},
+        {"name": "Susan Wiemers", "class": "2027", "district": "C", "status": "L", "gender": "F", "race": "W"},
+        {"name": "Guy Morrison", "class": "2027", "district": "C", "status": "L", "gender": "M", "race": "A/A"},
+        {"name": "Bob Post", "class": "2028", "district": "C", "status": "L", "gender": "M", "race": "W"},
+        {"name": "Kevin Reed", "class": "2028", "district": "N", "status": "L", "gender": "M", "race": "W"},
+        {"name": "Roger Stolley", "class": "2028", "district": "S", "status": "L", "gender": "M", "race": "W"},
+        {"name": "Gary Henrichson", "class": "2029", "district": "S", "status": "L", "gender": "M", "race": "W"},
+        {"name": "Fred Perez", "class": "2029", "district": "S", "status": "CL", "gender": "M", "race": "H/L"},
+        {"name": "Kathryn McNeeley – Chair", "class": "2029", "district": "N", "status": "CL", "gender": "F", "race": "W"},
+        {"name": "Wade Powell", "class": "2030", "district": "N", "status": "CL", "gender": "M", "race": "W", "nominee": true},
+        {"name": "Connor Adamson", "class": "2030", "district": "S", "status": "L", "gender": "M", "race": "W", "nominee": true},
+        {"name": "Debbie Gates", "class": "2030", "district": "S", "status": "L", "gender": "F", "race": "W", "nominee": true}
+      ]
+    },
+    "board-of-pensions": {
+      "to_elect": 4,
+      "members": [
+        {"name": "Mark Nerio", "class": "2028", "district": "C", "status": "L", "gender": "M", "race": "H/L"},
+        {"name": "Teresa Keese", "class": "2028", "district": "C", "status": "L", "gender": "F", "race": "W"},
+        {"name": "Robert Perales", "class": "2028", "district": "S", "status": "CL", "gender": "M", "race": "H/L"},
+        {"name": "Angie Salas", "class": "2028", "district": "S", "status": "L", "gender": "F", "race": "H/L"},
+        {"name": "Raquel Feagins – Chair", "class": "2030", "district": "N", "status": "CL", "gender": "F", "race": "H/L"},
+        {"name": "Zeda Alvarado", "class": "2030", "district": "C", "status": "L", "gender": "F", "race": "W"},
+        {"name": "Danielle Knapp", "class": "2030", "district": "N", "status": "CL", "gender": "F", "race": "W"},
+        {"name": "Mark Porterfield", "class": "2030", "district": "C", "status": "CL", "gender": "M", "race": "W"},
+        {"name": "Frank Gaytan", "class": "2032", "district": "C", "status": "L", "gender": "M", "race": "H/L"},
+        {"name": "Randine Besosa", "class": "2032", "district": "C", "status": "L", "gender": "F", "race": "W"},
+        {"name": "Thomas Hankins", "class": "2032", "district": "N", "status": "CL", "gender": "M", "race": "H/L"},
+        {"name": "Janet Robles", "class": "2032", "district": "S", "status": "L", "gender": "F", "race": "H/L"},
+        {"name": "Gricelda Careaga", "class": "2034", "district": "S", "status": "CL", "gender": "F", "race": "H/L", "nominee": true},
+        {"name": "Rosalynn Vega", "class": "2034", "district": "S", "status": "L", "gender": "F", "race": "H/L", "nominee": true},
+        {"name": "Karen Prewitt", "class": "2034", "district": "S", "status": "L", "gender": "F", "race": "W", "nominee": true},
+        {"name": "Melvin Chambers", "class": "2034", "district": "N", "status": "L", "gender": "M", "race": "A/A", "nominee": true}
+      ]
+    },
+    "archives-and-history": {
+      "to_elect": 1,
+      "members": [
+        {"name": "Jay Brim", "district": "N", "status": "L", "gender": "M", "race": "W"},
+        {"name": "Betsy Careaga", "district": "S", "status": "CL", "gender": "F", "race": "H/L", "nominee": true},
+        {"name": "Bobbi Kroll – Chair", "district": "C", "status": "L", "gender": "F", "race": "W"},
+        {"name": "Mark Mitchell", "district": "C", "status": "L", "gender": "M", "race": "W"},
+        {"name": "Daniel Flores", "district": "C", "status": "CL", "gender": "M", "race": "H/L"},
+        {"name": "Cynthia Kepler Karrer", "district": "N", "status": "CL", "gender": "F", "race": "W"},
+        {"name": "Ralph Thompson", "district": "C", "status": "L", "gender": "M", "race": "A/A"},
+        {"name": "Paul Barton", "district": "C", "status": "CL", "gender": "M", "race": "H/L"}
+      ]
+    },
+    "nominations": {
+      "to_elect": 1,
+      "members": [
+        {"name": "Linda Brown Armwood", "pos": "At Large", "status": "L", "gender": "F", "district": "S", "race": "A/A", "nominee": true},
+        {"name": "Isabella Lopez", "pos": "At Large", "status": "L", "gender": "F", "district": "N", "race": "H/L"},
+        {"name": "Bonnie Bevers", "pos": "At Large", "status": "CL", "gender": "F", "district": "N", "race": "W"},
+        {"name": "Priscilla Leal", "pos": "At Large", "status": "L", "gender": "F", "district": "S", "race": "H/L"},
+        {"name": "Michelle Vernone", "pos": "At Large", "status": "CL", "gender": "F", "district": "C", "race": "W"},
+        {"name": "Nicki Burnam", "pos": "At Large", "status": "L", "gender": "F", "district": "C", "race": "W"},
+        {"name": "Reagan Leal", "pos": "Youth Ministry Council", "status": "L", "gender": "F", "district": "N", "race": "W"},
+        {"name": "Parker Brown", "pos": "Young Adult Min. Council", "status": "L", "gender": "M", "district": "N", "race": "W"},
+        {"name": "Kevin Reed", "pos": "Conference Lay Leader", "status": "L", "gender": "M", "district": "N", "race": "W"},
+        {"name": "Minerva Briones", "pos": "United Women in Faith", "status": "L", "gender": "F", "district": "C", "race": "H/L"},
+        {"name": "Chuck McGarity", "pos": "United Methodist Men", "status": "L", "gender": "M", "district": "N", "race": "A/A"},
+        {"name": "Tracey Beadle", "pos": "North District Superintendent", "status": "CL", "gender": "F", "district": "N", "race": "W"},
+        {"name": "Robert Ortiz", "pos": "Central District Superintendent", "status": "CL", "gender": "M", "district": "C", "race": "H/L"},
+        {"name": "Pamela Dykehouse", "pos": "South District Superintendent", "status": "CL", "gender": "F", "district": "S", "race": "W"},
+        {"name": "Aaron Gonzalez", "pos": "Assistant to the Bishop", "status": "CL", "gender": "M", "district": "RTC", "race": "H/L"},
+        {"name": "Cynthia Fierro Harvey", "pos": "Bishop / Chair", "status": "CL", "gender": "F", "district": "RTC", "race": "H/L"}
+      ]
+    },
+    "uniting-peoples": {
+      "to_elect": 2,
+      "members": [
+        {"pos": "Chairperson", "name": "Byrd Bonner", "district": "C", "status": "L", "gender": "M", "race": "W", "nominee": true},
+        {"pos": "Comm. Christian Unity & I.R. Concerns", "name": "Deb Stark", "district": "S", "status": "L", "gender": "F", "race": "W", "nominee": true},
+        {"pos": "Comm. Christian Unity & I.R. Concerns", "name": "Ervinell Walters", "district": "C", "status": "L", "gender": "F", "race": "A/A"},
+        {"pos": "Commission on Religion and Race", "name": "Thomas Hankins", "district": "N", "status": "CL", "gender": "M", "race": "H/L"},
+        {"pos": "Commission on Religion and Race", "name": "Sara Solis", "district": "S", "status": "CL", "gender": "F", "race": "H/L"},
+        {"pos": "Commission on the Status and Role of Women", "name": "Christy Brogan", "district": "C", "status": "L", "gender": "F", "race": "W"},
+        {"pos": "Commission on the Status and Role of Women", "name": "Mary Helen Frazier", "district": "N", "status": "L", "gender": "F", "race": "A/A"},
+        {"pos": "Committee on Communications", "name": "Rick Mantooth", "district": "C", "status": "L", "gender": "M", "race": "W"},
+        {"pos": "Committee on Communications", "name": "Marshall Van Pelt", "district": "S", "status": "CL", "gender": "M", "race": "W"},
+        {"pos": "Committee on Disability Concerns", "name": "Pamela Sattiewhite", "district": "S", "status": "CL", "gender": "F", "race": "A/A"},
+        {"pos": "Committee on Disability Concerns", "name": "Hershel Krigbaum", "district": "C", "status": "L", "gender": "M", "race": "W"},
+        {"pos": "Mission Field Advocate", "name": "Cindy Andrade Johnson", "district": "S", "status": "L", "gender": "F", "race": "H/L"}
+      ]
+    },
+    "standing-rules": {
+      "to_elect": 1,
+      "members": [
+        {"name": "Janie Carter", "district": "S", "status": "L", "gender": "F", "race": "W", "nominee": true},
+        {"name": "Matt Ratcliff", "district": "S", "status": "CL", "gender": "M", "race": "W"},
+        {"name": "Wilson Pruitt", "district": "N", "status": "CL", "gender": "M", "race": "W"},
+        {"name": "Edgardo J Ruiz", "district": "S", "status": "CL", "gender": "M", "race": "H/L"},
+        {"name": "Bonnie Bevers", "district": "N", "status": "CL", "gender": "F", "race": "W"},
+        {"name": "Katie Myers", "district": "C", "status": "L", "gender": "F", "race": "W"},
+        {"name": "Aaron Gonzalez", "district": "RTC", "status": "CL", "gender": "M", "race": "H/L"}
+      ]
+    }
+  }
+}
