@@ -153,6 +153,8 @@ const finance = defineCollection({
     apportionment_ask: z.number().optional(),
     collection_rate: z.number().optional(),
     ask_source: z.string().optional(),
+    /** True when the audited revenue figures for this year are not yet final. */
+    preliminary: z.boolean().optional(),
   }),
 });
 

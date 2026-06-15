@@ -21,6 +21,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT / "src" / "data" / "conference-finance.json"
+ASK = ROOT / "src" / "data" / "apportionment-ask.json"
 DEFAULT_SRC = ROOT.parent / "rio-texas-journal" / "src" / "data" / "conference-finance.json"
 SRC = Path(os.environ.get("AC_GUIDE_FINANCE_SRC", DEFAULT_SRC))
 
@@ -30,8 +31,8 @@ ATLAS_FIELDS = (
     "total_rev", "total_exp", "program_exp", "gen_admin_exp", "net_assets_eoy",
     "source",
 )
-# Fields ac-guide owns (from the journal PDFs); never clobbered by the Atlas mirror.
-LOCAL_FIELDS = ("apportionment_ask", "collection_rate", "ask_source")
+# Fields ac-guide owns, from the journal PDFs (see apportionment-ask.json).
+LOCAL_FIELDS = ("apportionment_ask", "collection_rate", "ask_source", "preliminary")
 
 
 def main() -> None:
@@ -39,9 +40,7 @@ def main() -> None:
         raise SystemExit(f"Atlas finance source not found: {SRC}\n"
                          f"Set AC_GUIDE_FINANCE_SRC to the conference-finance.json path.")
     atlas = {row["data_year"]: row for row in json.loads(SRC.read_text())}
-    existing = {}
-    if DEST.exists():
-        existing = {row["data_year"]: row for row in json.loads(DEST.read_text())}
+    ask = json.loads(ASK.read_text()).get("years", {}) if ASK.exists() else {}
 
     merged = []
     for year in sorted(atlas):
@@ -49,10 +48,11 @@ def main() -> None:
         for f in ATLAS_FIELDS:
             if f in atlas[year]:
                 row[f] = atlas[year][f]
-        # Preserve locally-owned fields (journal-sourced ask / collection rate).
+        # Overlay journal-sourced fields (the apportionment ask / collection rate).
+        journal = ask.get(str(year), {})
         for f in LOCAL_FIELDS:
-            if year in existing and f in existing[year]:
-                row[f] = existing[year][f]
+            if f in journal:
+                row[f] = journal[f]
         merged.append(row)
 
     DEST.parent.mkdir(parents=True, exist_ok=True)

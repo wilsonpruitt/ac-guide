@@ -45,8 +45,8 @@ const collectionRate =
       {collectionRate != null && (
         <a class="stat" href={ATLAS}>
           <span class="stat-label">Collection rate</span>
-          <span class="stat-value">{collectionRate.toFixed(0)}%</span>
-          <span class="stat-sub">of {usd(latest.apportionment_ask)} apportioned{latest.ask_source ? ` · ${latest.ask_source}` : ''}</span>
+          <span class="stat-value">{collectionRate.toFixed(1)}%</span>
+          <span class="stat-sub">of {usd(latest.apportionment_ask)} apportioned, all funds</span>
         </a>
       )}
       <a class="stat" href={ATLAS}>
@@ -67,11 +67,15 @@ const collectionRate =
       <p class="py-note">The apportionment <em>ask</em> for this year isn't in the structured
         record yet, so a collection rate isn't shown — it's pulled from the annual journal.</p>
     )}
+    {latest.preliminary && (
+      <p class="py-note">{latest.data_year} revenue figures are <strong>preliminary</strong>
+        (pre-final audit); the collection rate is from the CF&amp;A report.</p>
+    )}
 
     <details class="py-trend">
-      <summary>Apportionment received, {first?.data_year}–{latest.data_year}</summary>
+      <summary>Apportionment received &amp; collection rate, {first?.data_year}–{latest.data_year}</summary>
       <table>
-        <thead><tr><th>Year</th><th>Apportionment</th><th>vs. prior</th></tr></thead>
+        <thead><tr><th>Year</th><th>Received</th><th>vs. prior</th><th>Collected</th></tr></thead>
         <tbody>
           {rows.map((r, i) => {
             const prev = rows[i - 1]?.apportionment_rev;
@@ -82,13 +86,14 @@ const collectionRate =
                 <td>{r.data_year}</td>
                 <td>{usd(r.apportionment_rev)}</td>
                 <td class={yoy != null && yoy < 0 ? 'down' : 'up'}>{yoy != null ? pct(yoy) : '—'}</td>
+                <td>{r.collection_rate != null ? `${r.collection_rate.toFixed(1)}%` : '—'}</td>
               </tr>
             );
           })}
         </tbody>
       </table>
-      <p class="py-source">Full interactive view, including the inflation-pegged baseline, on
-        <a href={ATLAS}>the Río Texas Atlas →</a></p>
+      <p class="py-source">Collection rate is CF&amp;A's stated share on all funds. Full interactive
+        revenue view, including the inflation-pegged baseline, on <a href={ATLAS}>the Atlas →</a></p>
     </details>
   </section>
 )}

@@ -1,0 +1,14 @@
+{
+  "_comment": "Journal-sourced apportionment figures, hand-verified from the Río Texas annual journal CF&A reports ('Receipts on all funds for YYYY ... were $X, or Z% of the apportioned amount'). collection_rate is CF&A's stated rate on ALL funds (incl. pension/health/insurance), not the narrower connectional program budget. apportionment_ask is implied = CF&A receipts ÷ rate. Merged into conference-finance.json by scripts/seed_finance.py. ask_source is journal-(year+1).",
+  "years": {
+    "2016": { "apportionment_ask": 10807206, "collection_rate": 92.76, "ask_source": "journal-2017" },
+    "2017": { "apportionment_ask": 10370681, "collection_rate": 95.05, "ask_source": "journal-2018" },
+    "2018": { "apportionment_ask": 10663476, "collection_rate": 92.97, "ask_source": "journal-2019" },
+    "2019": { "apportionment_ask": 10424366, "collection_rate": 88.90, "ask_source": "journal-2020" },
+    "2020": { "apportionment_ask": 9789167, "collection_rate": 85.46, "ask_source": "journal-2021" },
+    "2021": { "apportionment_ask": 9243255, "collection_rate": 88.35, "ask_source": "journal-2022" },
+    "2022": { "apportionment_ask": 9069833, "collection_rate": 86.53, "ask_source": "journal-2023" },
+    "2023": { "apportionment_ask": 9055074, "collection_rate": 78.36, "ask_source": "journal-2024" },
+    "2024": { "apportionment_ask": 10337202, "collection_rate": 69.41, "ask_source": "journal-2025", "preliminary": true }
+  }
+}

@@ -8,7 +8,10 @@
     "total_rev": 24411358,
     "total_exp": 19337529,
     "net_assets_eoy": 23036987,
-    "source": "journal-2017"
+    "source": "journal-2017",
+    "apportionment_ask": 10807206,
+    "collection_rate": 92.76,
+    "ask_source": "journal-2017"
   },
   {
     "data_year": 2017,
@@ -21,7 +24,10 @@
     "program_exp": 16529911,
     "gen_admin_exp": 2402464,
     "net_assets_eoy": 24431932,
-    "source": "journal-2018"
+    "source": "journal-2018",
+    "apportionment_ask": 10370681,
+    "collection_rate": 95.05,
+    "ask_source": "journal-2018"
   },
   {
     "data_year": 2018,
@@ -34,7 +40,10 @@
     "program_exp": 19351277,
     "gen_admin_exp": 2139544,
     "net_assets_eoy": 32493040,
-    "source": "journal-2019"
+    "source": "journal-2019",
+    "apportionment_ask": 10663476,
+    "collection_rate": 92.97,
+    "ask_source": "journal-2019"
   },
   {
     "data_year": 2019,
@@ -47,7 +56,10 @@
     "program_exp": 21578525,
     "gen_admin_exp": 1947186,
     "net_assets_eoy": 30703713,
-    "source": "journal-2020"
+    "source": "journal-2020",
+    "apportionment_ask": 10424366,
+    "collection_rate": 88.9,
+    "ask_source": "journal-2020"
   },
   {
     "data_year": 2020,
@@ -60,7 +72,10 @@
     "program_exp": 17446044,
     "gen_admin_exp": 1268845,
     "net_assets_eoy": 28882845,
-    "source": "journal-2021"
+    "source": "journal-2021",
+    "apportionment_ask": 9789167,
+    "collection_rate": 85.46,
+    "ask_source": "journal-2021"
   },
   {
     "data_year": 2021,
@@ -73,7 +88,10 @@
     "program_exp": 15619586,
     "gen_admin_exp": 1381115,
     "net_assets_eoy": 29956370,
-    "source": "journal-2022"
+    "source": "journal-2022",
+    "apportionment_ask": 9243255,
+    "collection_rate": 88.35,
+    "ask_source": "journal-2022"
   },
   {
     "data_year": 2022,
@@ -86,7 +104,10 @@
     "program_exp": 17221100,
     "gen_admin_exp": 1650146,
     "net_assets_eoy": 33437524,
-    "source": "journal-2023"
+    "source": "journal-2023",
+    "apportionment_ask": 9069833,
+    "collection_rate": 86.53,
+    "ask_source": "journal-2023"
   },
   {
     "data_year": 2023,
@@ -99,7 +120,10 @@
     "program_exp": 15842336,
     "gen_admin_exp": 1849392,
     "net_assets_eoy": 33875072,
-    "source": "journal-2024"
+    "source": "journal-2024",
+    "apportionment_ask": 9055074,
+    "collection_rate": 78.36,
+    "ask_source": "journal-2024"
   },
   {
     "data_year": 2024,
@@ -112,6 +136,10 @@
     "program_exp": 9285979,
     "gen_admin_exp": 1789417,
     "net_assets_eoy": 29498188,
-    "source": "audit-2025-image"
+    "source": "audit-2025-image",
+    "apportionment_ask": 10337202,
+    "collection_rate": 69.41,
+    "ask_source": "journal-2025",
+    "preliminary": true
   }
 ]
