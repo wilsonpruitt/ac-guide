@@ -5,6 +5,7 @@ summary: The budget and the money votes — apportionments, minimum pay, distric
 votesOn: action
 agency: finance-table
 bodRefs: ["¶¶611-627"]
+perYear: finance
 updated: 2026-01-01
 ---
 
@@ -46,11 +47,7 @@ people's heads rather than the document.
 
 ## The honest picture
 
-Apportionments are asked, not guaranteed. In recent years the conference has received
-roughly four-fifths of the full apportioned amount, and plans around that reality —
-paying fixed costs like salaries first and holding a reserve. The exact collection rate
-is a per-year figure.
-
-## What's up this year
-
-<!-- per-year instance: budget table, % changes, collection rate — from the journal + Atlas. -->
+Apportionments are asked, not guaranteed. The conference receives less than the full
+apportioned amount each year and plans around that reality — paying fixed costs like
+salaries first and holding a reserve. What share actually comes in (the *collection
+rate*) is a per-year figure, shown below.

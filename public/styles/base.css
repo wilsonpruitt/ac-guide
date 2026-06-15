@@ -59,3 +59,23 @@ ul.bare li { padding:.4rem 0; border-bottom:1px solid var(--line); }
 .ladder-list li { padding:.35rem 0; border-bottom:1px solid var(--line); display:flex; gap:.7rem; align-items:baseline; }
 .ladder-list .rank { display:inline-grid; place-items:center; min-width:1.5rem; height:1.5rem;
   border-radius:50%; background:var(--ink); color:var(--bg); font-size:.78rem; }
+/* Per-year instance (live figures from the Atlas; distinct from evergreen prose). */
+.per-year { margin:2rem 0; padding:1rem 1.1rem; border:1px solid var(--line); border-radius:.5rem;
+  background:#fafafa; }
+.py-head { display:flex; justify-content:space-between; align-items:baseline; gap:.5rem; flex-wrap:wrap; }
+.py-head h2 { margin:0; }
+.py-source { font-size:.78rem; color:var(--muted); }
+.py-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr)); gap:.6rem; margin:.9rem 0; }
+.py-stats .stat { display:flex; flex-direction:column; padding:.6rem .7rem; border:1px solid var(--line);
+  border-radius:.4rem; background:var(--bg); text-decoration:none; color:var(--ink); }
+.py-stats .stat:hover { border-color:var(--muted); }
+.stat-label { font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
+.stat-value { font-size:1.25rem; font-weight:700; margin-top:.15rem; }
+.stat-sub { font-size:.76rem; color:var(--muted); margin-top:.1rem; }
+.py-note { font-size:.83rem; color:var(--muted); }
+.py-trend summary { cursor:pointer; font-size:.9rem; }
+.py-trend table { width:100%; border-collapse:collapse; margin:.7rem 0; font-size:.88rem; }
+.py-trend th, .py-trend td { text-align:right; padding:.3rem .5rem; border-bottom:1px solid var(--line); }
+.py-trend th:first-child, .py-trend td:first-child { text-align:left; }
+.py-trend .down { color:var(--open); }
+.py-trend .up { color:var(--resolved); }

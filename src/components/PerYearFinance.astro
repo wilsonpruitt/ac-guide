@@ -1,0 +1,94 @@
+---
+import { getCollection } from 'astro:content';
+
+const ATLAS = 'https://riotexas.wrootlabs.com/conference';
+
+const rows = (await getCollection('finance'))
+  .map((r) => r.data)
+  .sort((a, b) => a.data_year - b.data_year);
+
+const latest = rows.at(-1);
+const first = rows[0];
+
+const usd = (n?: number) =>
+  n == null ? '—' : n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+const pct = (n: number) => `${n > 0 ? '+' : ''}${n.toFixed(0)}%`;
+
+// Apportionment received: latest, change since the first year on record.
+const apportDrop =
+  latest?.apportionment_rev != null && first?.apportionment_rev
+    ? ((latest.apportionment_rev - first.apportionment_rev) / first.apportionment_rev) * 100
+    : null;
+
+// Collection rate: only when the journal-sourced ask is present (no fabrication).
+const collectionRate =
+  latest?.collection_rate ??
+  (latest?.apportionment_ask && latest?.apportionment_rev
+    ? (latest.apportionment_rev / latest.apportionment_ask) * 100
+    : null);
+---
+{latest && (
+  <section class="per-year">
+    <div class="py-head">
+      <h2>What's up this year</h2>
+      <span class="py-source">Audited figures · {latest.data_year} · <a href={ATLAS}>via the Atlas</a></span>
+    </div>
+
+    <div class="py-stats">
+      <a class="stat" href={ATLAS}>
+        <span class="stat-label">Apportionment received</span>
+        <span class="stat-value">{usd(latest.apportionment_rev)}</span>
+        {apportDrop != null && first && (
+          <span class="stat-sub">{pct(apportDrop)} since {first.data_year}</span>
+        )}
+      </a>
+      {collectionRate != null && (
+        <a class="stat" href={ATLAS}>
+          <span class="stat-label">Collection rate</span>
+          <span class="stat-value">{collectionRate.toFixed(0)}%</span>
+          <span class="stat-sub">of {usd(latest.apportionment_ask)} apportioned{latest.ask_source ? ` · ${latest.ask_source}` : ''}</span>
+        </a>
+      )}
+      <a class="stat" href={ATLAS}>
+        <span class="stat-label">Total revenue</span>
+        <span class="stat-value">{usd(latest.total_rev)}</span>
+      </a>
+      <a class="stat" href={ATLAS}>
+        <span class="stat-label">Total expenses</span>
+        <span class="stat-value">{usd(latest.total_exp)}</span>
+      </a>
+      <a class="stat" href={ATLAS}>
+        <span class="stat-label">Net assets, year end</span>
+        <span class="stat-value">{usd(latest.net_assets_eoy)}</span>
+      </a>
+    </div>
+
+    {collectionRate == null && (
+      <p class="py-note">The apportionment <em>ask</em> for this year isn't in the structured
+        record yet, so a collection rate isn't shown — it's pulled from the annual journal.</p>
+    )}
+
+    <details class="py-trend">
+      <summary>Apportionment received, {first?.data_year}–{latest.data_year}</summary>
+      <table>
+        <thead><tr><th>Year</th><th>Apportionment</th><th>vs. prior</th></tr></thead>
+        <tbody>
+          {rows.map((r, i) => {
+            const prev = rows[i - 1]?.apportionment_rev;
+            const yoy = prev && r.apportionment_rev != null
+              ? ((r.apportionment_rev - prev) / prev) * 100 : null;
+            return (
+              <tr>
+                <td>{r.data_year}</td>
+                <td>{usd(r.apportionment_rev)}</td>
+                <td class={yoy != null && yoy < 0 ? 'down' : 'up'}>{yoy != null ? pct(yoy) : '—'}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      <p class="py-source">Full interactive view, including the inflation-pegged baseline, on
+        <a href={ATLAS}>the Río Texas Atlas →</a></p>
+    </details>
+  </section>
+)}

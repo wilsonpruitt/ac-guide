@@ -1,6 +1,10 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { getCollection, getEntry, render } from 'astro:content';
+import PerYearFinance from '../../components/PerYearFinance.astro';
+
+/** Registry of per-year instance renderers, keyed by the agenda `perYear` field. */
+const perYearComponents = { finance: PerYearFinance };
 
 export async function getStaticPaths() {
   const items = await getCollection('agenda');
@@ -12,6 +16,7 @@ const d = item.data;
 const { Content } = await render(item);
 
 const agencyEntry = d.agency ? await getEntry(d.agency) : null;
+const PerYear = d.perYear ? perYearComponents[d.perYear] : null;
 
 const matches = (ref: string) => ref === item.id || ref.startsWith(item.id + '#');
 const notes = (await getCollection('annotations')).filter(
@@ -35,7 +40,7 @@ const votesLabel = (v?: string) =>
 
   <article><Content /></article>
 
-  {/* per-year instance renders here from the Atlas/journal — see HANDOFF */}
+  {PerYear && <PerYear />}
 
   {notes.length > 0 && (
     <section>
