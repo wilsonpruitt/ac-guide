@@ -2,59 +2,108 @@
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
-const motions = await getCollection('motions');
+const motions = (await getCollection('motions')).map((m) => m.data);
 
-// Group order follows the Standing Rules tables.
 const groups = [
-  { key: 'privileged', label: 'Privileged motions', blurb: 'Urgent matters that interrupt other business.' },
-  { key: 'subsidiary', label: 'Subsidiary motions', blurb: 'Act on the motion currently before the body.' },
-  { key: 'incidental', label: 'Incidental motions', blurb: 'Questions of procedure arising from the business at hand.' },
-  { key: 'main', label: 'Main motions', blurb: 'Bring new business before the conference.' },
-  { key: 'bring-back', label: 'Bring a question back', blurb: 'Reopen something already decided.' },
+  { key: 'privileged', label: 'Privileged', blurb: 'Urgent matters that interrupt other business.' },
+  { key: 'subsidiary', label: 'Subsidiary', blurb: 'Act on the motion currently before the body.' },
+  { key: 'incidental', label: 'Incidental', blurb: 'Questions of procedure arising from the business at hand.' },
+  { key: 'main', label: 'Main', blurb: 'Bring new business before the conference.' },
+  { key: 'bring-back', label: 'Bring back', blurb: 'Reopen something already decided.' },
 ];
+const groupLabel = Object.fromEntries(groups.map((g) => [g.key, g.label]));
 
-const byGroup = groups.map((g) => ({
-  ...g,
-  items: motions
-    .map((m) => m.data)
-    .filter((m) => m.category === g.key)
-    .sort((a, b) => (a.rank ?? 99) - (b.rank ?? 99)),
-}));
+// Sort: ranked motions by precedence first, then the rest in document order.
+const sorted = [...motions].sort((a, b) => (a.rank ?? 99) - (b.rank ?? 99));
 
-const yn = (b: boolean) => (b ? 'Yes' : 'No');
+// Precedence ladder = the ranking motions, highest (rank 1) interrupts those below.
+const ladder = motions.filter((m) => m.rank !== null).sort((a, b) => a.rank! - b.rank!);
+
 const voteLabel = (v: string) =>
-  v === 'two-thirds' ? '⅔' : v === 'majority' ? 'Majority' : '—';
+  v === 'two-thirds' ? 'Two-thirds vote' : v === 'majority' ? 'Majority vote' : 'No vote — chair rules';
 ---
 <Base title="Making a motion">
   <p class="eyebrow">Parliamentary helper</p>
   <h1>What do you want to do?</h1>
-  <p>Every motion the body can take, with what to say and how it's handled. (An
-    interactive "filter by what you want to do" helper is coming — for now, the full
-    tables.)</p>
+  <p>Describe it, or pick a kind of motion. Each card tells you what to say, whether it
+    needs a second, whether it can be debated or amended, and the vote required.</p>
 
-  {byGroup.map((g) => g.items.length > 0 && (
-    <section>
-      <h2>{g.label}</h2>
-      <p>{g.blurb}</p>
-      <table class="motions">
-        <thead>
-          <tr>
-            <th>To…</th><th>Say</th><th>2nd?</th><th>Debate?</th><th>Amend?</th><th>Vote</th>
-          </tr>
-        </thead>
-        <tbody>
-          {g.items.map((m) => (
-            <tr>
-              <td>{m.intent}</td>
-              <td><em>“{m.say}”</em>{m.note && <span class="note-inline"> — {m.note}</span>}</td>
-              <td>{yn(m.second)}</td>
-              <td>{yn(m.debatable)}</td>
-              <td>{yn(m.amendable)}</td>
-              <td>{voteLabel(m.vote)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </section>
-  ))}
+  <div class="helper-controls">
+    <input id="motion-search" type="search" placeholder="e.g. table, amend, adjourn, end debate…"
+      autocomplete="off" aria-label="Search motions by what you want to do" />
+    <div class="chips" role="group" aria-label="Filter by kind">
+      <button class="chip is-active" data-cat="all" aria-pressed="true">All</button>
+      {groups.map((g) => (
+        <button class="chip" data-cat={g.key} aria-pressed="false">{g.label}</button>
+      ))}
+    </div>
+  </div>
+
+  <p id="motion-empty" class="muted" hidden>No motion matches that. Try a different word.</p>
+
+  <ul class="motion-cards" id="motion-cards">
+    {sorted.map((m) => (
+      <li class="motion-card" data-cat={m.category}
+        data-text={`${m.intent} ${m.say} ${m.note ?? ''}`.toLowerCase()}>
+        <div class="mc-head">
+          <h3>{m.intent}</h3>
+          <span class="pill">{groupLabel[m.category]}{m.rank !== null && ` · #${m.rank}`}</span>
+        </div>
+        <p class="mc-say">“{m.say}”</p>
+        <ul class="mc-badges">
+          <li class={m.second ? 'yes' : 'no'}>{m.second ? 'Needs a second' : 'No second needed'}</li>
+          <li class={m.debatable ? 'yes' : 'no'}>{m.debatable ? 'Debatable' : 'Not debatable'}</li>
+          <li class={m.amendable ? 'yes' : 'no'}>{m.amendable ? 'Amendable' : 'Not amendable'}</li>
+          <li class="vote">{voteLabel(m.vote)}</li>
+        </ul>
+        {m.note && <p class="mc-note">{m.note}</p>}
+      </li>
+    ))}
+  </ul>
+
+  <section class="ladder">
+    <h2>Order of precedence</h2>
+    <p>When more than one motion is pending, a motion higher on this ladder can be made
+      while a lower one is on the floor — not the other way around. (Non-ranking motions
+      aren't on the ladder; they're handled when they arise.)</p>
+    <ol class="ladder-list">
+      {ladder.map((m) => (
+        <li><span class="rank">{m.rank}</span> {m.intent}</li>
+      ))}
+    </ol>
+  </section>
 </Base>
+
+<script>
+  const search = document.getElementById('motion-search') as HTMLInputElement | null;
+  const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.chip'));
+  const cards = Array.from(document.querySelectorAll<HTMLLIElement>('.motion-card'));
+  const empty = document.getElementById('motion-empty');
+  let cat = 'all';
+
+  function apply() {
+    const q = (search?.value ?? '').trim().toLowerCase();
+    let shown = 0;
+    for (const card of cards) {
+      const matchCat = cat === 'all' || card.dataset.cat === cat;
+      const matchText = q === '' || (card.dataset.text ?? '').includes(q);
+      const show = matchCat && matchText;
+      card.hidden = !show;
+      if (show) shown++;
+    }
+    if (empty) empty.hidden = shown !== 0;
+  }
+
+  search?.addEventListener('input', apply);
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      cat = chip.dataset.cat ?? 'all';
+      chips.forEach((c) => {
+        const on = c === chip;
+        c.classList.toggle('is-active', on);
+        c.setAttribute('aria-pressed', String(on));
+      });
+      apply();
+    });
+  });
+</script>

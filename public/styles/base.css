@@ -33,7 +33,29 @@ h2 { margin-top:2rem; }
 .pill a { text-decoration:none; }
 ul.bare { list-style:none; padding:0; margin:.5rem 0; }
 ul.bare li { padding:.4rem 0; border-bottom:1px solid var(--line); }
-table.motions { width:100%; border-collapse:collapse; margin:.8rem 0 1.5rem; font-size:.9rem; }
-table.motions th, table.motions td { text-align:left; padding:.45rem .5rem; border-bottom:1px solid var(--line); vertical-align:top; }
-table.motions th { font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
-table.motions .note-inline { color:var(--muted); font-style:normal; }
+/* Parliamentary helper (Phase 2 — functional styling; full design pass deferred). */
+.muted { color:var(--muted); }
+.helper-controls { margin:1.2rem 0 1rem; }
+#motion-search { width:100%; padding:.6rem .8rem; font-size:1rem; border:1px solid var(--line);
+  border-radius:.4rem; }
+.chips { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.7rem; }
+.chip { font-size:.82rem; padding:.25rem .7rem; border:1px solid var(--line); border-radius:1rem;
+  background:var(--bg); color:var(--ink); cursor:pointer; }
+.chip.is-active { background:var(--ink); color:var(--bg); border-color:var(--ink); }
+.motion-cards { list-style:none; padding:0; margin:1rem 0; display:grid; gap:.8rem; }
+.motion-card { border:1px solid var(--line); border-radius:.5rem; padding:.8rem 1rem; }
+.motion-card[hidden] { display:none; }
+.mc-head { display:flex; justify-content:space-between; align-items:baseline; gap:.5rem; }
+.mc-head h3 { margin:0; font-size:1.02rem; }
+.mc-say { margin:.3rem 0 .6rem; font-style:italic; }
+.mc-badges { list-style:none; display:flex; flex-wrap:wrap; gap:.4rem; padding:0; margin:0; }
+.mc-badges li { font-size:.74rem; padding:.12rem .55rem; border-radius:1rem; border:1px solid var(--line); }
+.mc-badges .yes { background:#eef6f0; border-color:#cfe6d8; }
+.mc-badges .no { background:#f4f4f4; color:var(--muted); }
+.mc-badges .vote { background:#eef2fb; border-color:#d4ddf3; }
+.mc-note { margin:.55rem 0 0; font-size:.85rem; color:var(--muted); }
+.ladder { margin-top:2.5rem; }
+.ladder-list { list-style:none; padding:0; counter-reset:none; }
+.ladder-list li { padding:.35rem 0; border-bottom:1px solid var(--line); display:flex; gap:.7rem; align-items:baseline; }
+.ladder-list .rank { display:inline-grid; place-items:center; min-width:1.5rem; height:1.5rem;
+  border-radius:50%; background:var(--ink); color:var(--bg); font-size:.78rem; }
