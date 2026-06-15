@@ -7,7 +7,7 @@ import glossary from '../data/bod-glossary.json';
 interface Props { refs: string[]; pill?: boolean }
 const { refs, pill = false } = Astro.props;
 
-const paras = glossary.paragraphs as Record<string, { number: number; title: string | null; excerpt: string }>;
+const paras = glossary.paragraphs as Record<string, { number: number; title: string | null; excerpt: string; source?: string }>;
 
 // Parse a ref token ("¶610.5", "¶¶611-627") → base number to look up + display label.
 function parse(ref: string) {
@@ -28,7 +28,7 @@ const items = refs.map(parse);
           <span class="bodref-pop" role="tooltip">
             <span class="bp-num">¶{it.entry.number}{it.range ? ' ff.' : ''}{it.entry.title ? ` · ${it.entry.title}` : ''}</span>
             <span class="bp-body">{it.entry.excerpt}</span>
-            <span class="bp-src">Book of Discipline 2020/2024 · via Plenary</span>
+            <span class="bp-src">The Book of Discipline 2020/2024, ¶{it.entry.number}{it.entry.source === 'plenary' ? ' · via Plenary' : ''}</span>
           </span>
         </span>
       ) : (

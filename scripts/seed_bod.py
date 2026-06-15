@@ -20,6 +20,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "src" / "content"
 DEST = ROOT / "src" / "data" / "bod-glossary.json"
+SUPPLEMENT = ROOT / "src" / "data" / "bod-supplement.json"
 DEFAULT_SRC = ROOT.parent / "plenary" / "corpus" / "bod-2024" / "parsed" / "bod-2024.json"
 SRC = Path(os.environ.get("AC_GUIDE_BOD_SRC", DEFAULT_SRC))
 
@@ -53,31 +54,45 @@ def main() -> None:
         raise SystemExit(f"Plenary BoD corpus not found: {SRC}\n"
                          f"Set AC_GUIDE_BOD_SRC to the parsed bod JSON path.")
     corpus = {p["number"]: p for p in json.loads(SRC.read_text())["paragraphs"]}
+    supplement = (json.loads(SUPPLEMENT.read_text()).get("paragraphs", {})
+                  if SUPPLEMENT.exists() else {})
     wanted = referenced_numbers()
 
-    glossary, missing = {}, []
+    glossary, missing, supplemented = {}, [], []
     for n in sorted(wanted):
         p = corpus.get(n)
-        if not p:
+        if p:
+            glossary[str(n)] = {
+                "number": n,
+                "title": p.get("title") or None,
+                "excerpt": excerpt(p.get("body", "")),
+                "source": "plenary",
+            }
+        elif str(n) in supplement:
+            s = supplement[str(n)]
+            glossary[str(n)] = {
+                "number": n,
+                "title": s.get("title") or None,
+                "excerpt": s["excerpt"],
+                "source": "bod-pdf",
+            }
+            supplemented.append(n)
+        else:
             missing.append(n)
-            continue
-        glossary[str(n)] = {
-            "number": n,
-            "title": p.get("title") or None,
-            "excerpt": excerpt(p.get("body", "")),
-        }
 
     out = {
         "meta": {
             "edition": "The Book of Discipline of The United Methodist Church, 2020/2024",
-            "source": "Plenary (plenary.wrootlabs.com) — parsed BoD corpus",
+            "source": "Plenary parsed BoD corpus + scanned-PDF supplement (see bod-supplement.json)",
         },
         "paragraphs": glossary,
     }
     DEST.write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n")
     print(f"Wrote {len(glossary)}/{len(wanted)} referenced paragraphs → {DEST.relative_to(ROOT)}")
+    if supplemented:
+        print(f"  From PDF supplement ({len(supplemented)}): {', '.join('¶'+str(m) for m in supplemented)}")
     if missing:
-        print(f"  Not in Plenary ({len(missing)}): {', '.join('¶'+str(m) for m in missing)}")
+        print(f"  Still missing ({len(missing)}): {', '.join('¶'+str(m) for m in missing)}")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,14 @@
+{
+  "_comment": "Paragraphs the guide references that are NOT in Plenary's partial BoD ingest, transcribed from the official scanned Book of Discipline 2020/2024 PDF. seed_bod.py merges these for any referenced ¶ missing from Plenary; their source is the Discipline directly (not 'via Plenary').",
+  "source": "bod-pdf",
+  "paragraphs": {
+    "823": {
+      "title": "The Advance",
+      "excerpt": "The Advance for Christ and His Church (the Advance) is an official program within The United Methodist Church through which support may be designated for projects approved by the Advance Committee of the General Board of Global Ministries. A general Advance Special Gift is a designated contribution made by an individual, local church, district, or conference to an authorized project."
+    },
+    "2512": {
+      "title": "Conference Trustees",
+      "excerpt": "Each annual conference may be incorporated in its own name if permitted by local law. It shall have a board of trustees, which shall consist of twelve persons — it is recommended that one-third be clergy, one-third laywomen, and one-third laymen (¶ 610.5). They are the directors of the corporation, elected by the conference for staggered four-year terms."
+    }
+  }
+}
