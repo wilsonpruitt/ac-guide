@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+const items = (await getCollection('process')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="How it works">
+  <p class="eyebrow">How the body works</p>
+  <h1>Process &amp; procedure</h1>
+  <p>Not a specific item of business — the rules of the road. How an idea becomes
+    business, how to make a motion, who's a member, and what a consent agenda is.</p>
+  <ul class="bare">
+    {items.map((i) => (
+      <li><a href={`/process/${i.id}`}>{i.data.title}</a> — {i.data.summary}</li>
+    ))}
+  </ul>
+</Base>

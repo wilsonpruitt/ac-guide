@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const motions = await getCollection('motions');
+
+// Group order follows the Standing Rules tables.
+const groups = [
+  { key: 'privileged', label: 'Privileged motions', blurb: 'Urgent matters that interrupt other business.' },
+  { key: 'subsidiary', label: 'Subsidiary motions', blurb: 'Act on the motion currently before the body.' },
+  { key: 'incidental', label: 'Incidental motions', blurb: 'Questions of procedure arising from the business at hand.' },
+  { key: 'main', label: 'Main motions', blurb: 'Bring new business before the conference.' },
+  { key: 'bring-back', label: 'Bring a question back', blurb: 'Reopen something already decided.' },
+];
+
+const byGroup = groups.map((g) => ({
+  ...g,
+  items: motions
+    .map((m) => m.data)
+    .filter((m) => m.category === g.key)
+    .sort((a, b) => (a.rank ?? 99) - (b.rank ?? 99)),
+}));
+
+const yn = (b: boolean) => (b ? 'Yes' : 'No');
+const voteLabel = (v: string) =>
+  v === 'two-thirds' ? '⅔' : v === 'majority' ? 'Majority' : '—';
+---
+<Base title="Making a motion">
+  <p class="eyebrow">Parliamentary helper</p>
+  <h1>What do you want to do?</h1>
+  <p>Every motion the body can take, with what to say and how it's handled. (An
+    interactive "filter by what you want to do" helper is coming — for now, the full
+    tables.)</p>
+
+  {byGroup.map((g) => g.items.length > 0 && (
+    <section>
+      <h2>{g.label}</h2>
+      <p>{g.blurb}</p>
+      <table class="motions">
+        <thead>
+          <tr>
+            <th>To…</th><th>Say</th><th>2nd?</th><th>Debate?</th><th>Amend?</th><th>Vote</th>
+          </tr>
+        </thead>
+        <tbody>
+          {g.items.map((m) => (
+            <tr>
+              <td>{m.intent}</td>
+              <td><em>“{m.say}”</em>{m.note && <span class="note-inline"> — {m.note}</span>}</td>
+              <td>{yn(m.second)}</td>
+              <td>{yn(m.debatable)}</td>
+              <td>{yn(m.amendable)}</td>
+              <td>{voteLabel(m.vote)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+  ))}
+</Base>

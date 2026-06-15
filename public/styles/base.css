@@ -33,3 +33,7 @@ h2 { margin-top:2rem; }
 .pill a { text-decoration:none; }
 ul.bare { list-style:none; padding:0; margin:.5rem 0; }
 ul.bare li { padding:.4rem 0; border-bottom:1px solid var(--line); }
+table.motions { width:100%; border-collapse:collapse; margin:.8rem 0 1.5rem; font-size:.9rem; }
+table.motions th, table.motions td { text-align:left; padding:.45rem .5rem; border-bottom:1px solid var(--line); vertical-align:top; }
+table.motions th { font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
+table.motions .note-inline { color:var(--muted); font-style:normal; }
