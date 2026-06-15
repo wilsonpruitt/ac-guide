@@ -56,7 +56,13 @@ export default async function handler(req, res) {
       body: JSON.stringify({ title, body: issueBody, labels: ['question'] }),
     });
     if (!r.ok) {
-      return res.status(502).json({ error: 'Couldn’t file the question right now. Please try again later.' });
+      const detail = await r.text().catch(() => '');
+      console.error('GitHub issue create failed', r.status, detail);
+      // TEMP DEBUG: surface GitHub status + message to diagnose token/perms.
+      return res.status(502).json({
+        error: 'Couldn’t file the question right now. Please try again later.',
+        _debug: { status: r.status, message: detail.slice(0, 300) },
+      });
     }
     return res.status(200).json({ ok: true });
   } catch {
