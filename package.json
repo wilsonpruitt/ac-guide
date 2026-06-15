@@ -10,7 +10,8 @@
     "sync": "astro sync",
     "check": "astro check",
     "seed:agencies": "python3 scripts/seed_agencies.py",
-    "seed:finance": "python3 scripts/seed_finance.py"
+    "seed:finance": "python3 scripts/seed_finance.py",
+    "seed:bod": "python3 scripts/seed_bod.py"
   },
   "dependencies": {
     "astro": "^5.7.0"

@@ -168,5 +168,22 @@ ul.bare li:last-child { border-bottom:0; }
   font-size:.92rem; }
 .roster-names .role { display:block; font-size:.72rem; color:var(--reed-deep); }
 
+/* ---------- Book of Discipline refs + hover popover ---------- */
+.bodref { position:relative; border-bottom:1px dotted var(--reed-deep); cursor:help; white-space:nowrap; }
+.bodref.is-plain { border-bottom:0; cursor:default; color:var(--fg-quiet); }
+.bodref-pop { position:absolute; left:0; top:calc(100% + 6px); z-index:20; width:min(20rem,80vw);
+  display:none; background:var(--ivory); border:1px solid var(--slate-200); border-radius:10px;
+  box-shadow:var(--shadow-md,0 4px 12px rgba(26,33,40,.1)); padding:.6rem .75rem; white-space:normal;
+  text-align:left; font-family:var(--sans); cursor:auto; }
+.bodref:hover .bodref-pop, .bodref:focus-within .bodref-pop, .bodref:focus .bodref-pop { display:block; }
+.bp-num { display:block; font-weight:600; color:var(--fen); font-size:.84rem; margin-bottom:.25rem; }
+.bp-body { display:block; font-size:.82rem; line-height:1.5; color:var(--ink); }
+.bp-src { display:block; margin-top:.4rem; font-size:.7rem; color:var(--fg-quiet); }
+.ref-line { font-size:.9rem; color:var(--slate-600); }
+.ref-label { font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; color:var(--fen-mist); }
+.bodrefs.pill { display:inline-block; font-size:.72rem; border:1px solid var(--slate-200); border-radius:4px;
+  padding:.05rem .5rem; color:var(--fen-mist); background:var(--ivory); margin-left:.4rem; }
+.bodrefs.pill .bodref { border-bottom-color:var(--reed); }
+
 /* ---------- Home: lede ---------- */
 .lede { font-size:1.12rem; color:var(--slate-600); max-width:var(--measure); }

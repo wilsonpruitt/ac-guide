@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import { getCollection, getEntry } from 'astro:content';
 import BoardRoster from '../../components/BoardRoster.astro';
+import BodRefs from '../../components/BodRefs.astro';
 
 export async function getStaticPaths() {
   const agencies = await getCollection('agencies');
@@ -39,7 +40,7 @@ const fmt = (date: Date) =>
   {d.summary && <p>{d.summary}</p>}
 
   <dl class="spine-meta">
-    {d.bodRefs.length > 0 && (<><dt>Book of Discipline</dt><dd>{d.bodRefs.join(', ')}</dd></>)}
+    {d.bodRefs.length > 0 && (<><dt>Book of Discipline</dt><dd><BodRefs refs={d.bodRefs} /></dd></>)}
     {d.membershipSize && (<><dt>Members</dt><dd>{d.membershipSize}</dd></>)}
     {parentName && (<><dt>Part of</dt><dd>{parentName}</dd></>)}
     {d.votesOn && (<><dt>At conference</dt><dd>{votesLabel(d.votesOn)}</dd></>)}
@@ -48,7 +49,9 @@ const fmt = (date: Date) =>
   </dl>
 
   {d.alsoFulfills.length > 0 && (
-    <p>Also fulfills: {d.alsoFulfills.map((f) => `${f.name} (${f.bodRefs.join(', ')})`).join('; ')}.</p>
+    <p>Also fulfills: {d.alsoFulfills.map((f, i) => (
+      <>{i > 0 ? '; ' : ''}{f.name}{f.bodRefs.length > 0 && <> (<BodRefs refs={f.bodRefs} />)</>}</>
+    ))}.</p>
   )}
 
   {d.subBodies.length > 0 && (
@@ -58,7 +61,7 @@ const fmt = (date: Date) =>
         {d.subBodies.map((s) => (
           <li>
             {s.name}
-            {s.bodRefs.length > 0 && <span class="pill">{s.bodRefs.join(', ')}</span>}
+            {s.bodRefs.length > 0 && <> <BodRefs refs={s.bodRefs} pill={true} /></>}
             {s.note && <> — {s.note}</>}
           </li>
         ))}

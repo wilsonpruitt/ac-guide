@@ -1,0 +1,40 @@
+---
+import glossary from '../data/bod-glossary.json';
+
+/** Renders Book of Discipline paragraph references with hover/focus popovers
+ *  carrying the paragraph title + excerpt from Plenary (see scripts/seed_bod.py).
+ *  Refs not in Plenary's corpus render as plain text. */
+interface Props { refs: string[]; pill?: boolean }
+const { refs, pill = false } = Astro.props;
+
+const paras = glossary.paragraphs as Record<string, { number: number; title: string | null; excerpt: string }>;
+
+// Parse a ref token ("¶610.5", "¶¶611-627") → base number to look up + display label.
+function parse(ref: string) {
+  const m = ref.match(/(\d+)/);
+  const base = m ? m[1] : null;
+  const entry = base && paras[base] ? paras[base] : null;
+  return { label: ref, entry, range: /[-–]/.test(ref) };
+}
+
+const items = refs.map(parse);
+---
+<span class={pill ? 'bodrefs pill' : 'bodrefs'}>
+  {items.map((it, i) => (
+    <>
+      {it.entry ? (
+        <span class="bodref" tabindex="0">
+          {it.label}
+          <span class="bodref-pop" role="tooltip">
+            <span class="bp-num">¶{it.entry.number}{it.range ? ' ff.' : ''}{it.entry.title ? ` · ${it.entry.title}` : ''}</span>
+            <span class="bp-body">{it.entry.excerpt}</span>
+            <span class="bp-src">Book of Discipline 2020/2024 · via Plenary</span>
+          </span>
+        </span>
+      ) : (
+        <span class="bodref is-plain">{it.label}</span>
+      )}
+      {i < items.length - 1 ? ', ' : ''}
+    </>
+  ))}
+</span>

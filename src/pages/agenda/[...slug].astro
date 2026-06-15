@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import { getCollection, getEntry, render } from 'astro:content';
 import PerYearFinance from '../../components/PerYearFinance.astro';
 import NominationsSlate from '../../components/NominationsSlate.astro';
+import BodRefs from '../../components/BodRefs.astro';
 
 /** Registry of per-year instance renderers, keyed by the agenda `perYear` field. */
 const perYearComponents = { finance: PerYearFinance, nominations: NominationsSlate };
@@ -37,6 +38,9 @@ const votesLabel = (v?: string) =>
   <p>{d.summary}</p>
   {agencyEntry && (
     <p><span class="pill"><a href={`/agencies/${agencyEntry.id}`}>{agencyEntry.data.name}</a></span></p>
+  )}
+  {d.bodRefs.length > 0 && (
+    <p class="ref-line"><span class="ref-label">Book of Discipline</span> <BodRefs refs={d.bodRefs} /></p>
   )}
 
   <article><Content /></article>
