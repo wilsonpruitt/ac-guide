@@ -1,0 +1,29 @@
+{
+  "_comment": "Bodies composed by office (ex-officio) rather than by elected slate — from the RTC Standing Rules. Office-holders filled from the 2026 nominations report where it names them (Bishop, DSs, Assistant to the Bishop, Conference Lay Leader, org reps) and the 2025 journal directory for the rest (treasurer, secretary, Uniting Table chair). Holders change with office; verify current holders. Bodies with only a size defined (no names) carry a note instead of members.",
+  "boards": {
+    "agenda-and-worship": {
+      "byOffice": true,
+      "source": "RTC Standing Rules (composition); officeholders from the 2026 nominations report + 2025 journal",
+      "members": [
+        {"office": "Bishop", "holder": "Cynthia Fierro Harvey"},
+        {"office": "Assistant to the Episcopal Office", "holder": "Aaron Gonzalez"},
+        {"office": "District Superintendent — North", "holder": "Tracey Beadle"},
+        {"office": "District Superintendent — Central", "holder": "Robert Ortiz"},
+        {"office": "District Superintendent — South", "holder": "Pamela Dykehouse"},
+        {"office": "President, United Women in Faith", "holder": "Minerva Briones"},
+        {"office": "President, United Methodist Men", "holder": "Chuck McGarity"},
+        {"office": "President, Young Adult Ministry Council", "holder": "Parker Brown"},
+        {"office": "President, Youth Ministries Council", "holder": "Reagan Leal"},
+        {"office": "Conference Lay Leader", "holder": "Kevin Reed"},
+        {"office": "Conference Treasurer", "holder": "Kendall Waller"},
+        {"office": "Conference Secretary", "holder": "Kim Burke"},
+        {"office": "Chairperson, Uniting Table", "holder": "Isabella Lopez"},
+        {"office": "Worship Team Coordinator", "holder": null, "note": "recruited by the committee"}
+      ]
+    },
+    "episcopal-residence": {
+      "source": "RTC Standing Rules",
+      "note": "Six members, per the Standing Rules (function defined in Book of Discipline ¶637). The individual members aren't named in the 2026 nominations report or the conference journal directory."
+    }
+  }
+}

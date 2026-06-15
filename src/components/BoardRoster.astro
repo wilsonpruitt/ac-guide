@@ -1,6 +1,7 @@
 ---
 import rosters from '../data/board-rosters-2026.json';
 import directory from '../data/board-rosters-directory-2025.json';
+import composition from '../data/board-composition.json';
 
 interface Props { slug: string }
 const { slug } = Astro.props;
@@ -8,6 +9,8 @@ const { slug } = Astro.props;
 const board = (rosters.boards as Record<string, any>)[slug];
 // Bodies not in the nominations report fall back to the journal directory (names only).
 const dir = !board ? (directory.boards as Record<string, any>)[slug] : null;
+// Ex-officio bodies (composed by office) or size-only bodies fall back to composition.
+const comp = !board && !dir ? (composition.boards as Record<string, any>)[slug] : null;
 
 const DISTRICT: Record<string, string> = { N: 'North', C: 'Central', S: 'South', RTC: 'Conference' };
 const STATUS: Record<string, string> = { CL: 'Clergy', L: 'Lay' };
@@ -77,5 +80,28 @@ const nominees = board?.members?.filter((m: any) => m.nominee).length ?? 0;
     </ul>
     <p class="py-note-plain">This body wasn't up for election in {rosters.year}, so its members
       come from last year's conference journal — names only. Verify against a current source.</p>
+  </section>
+)}
+
+{comp && (
+  <section class="roster">
+    <div class="roster-head">
+      <h2>Members{comp.byOffice ? ' (by office)' : ''}</h2>
+      {comp.source && <span class="py-source">{comp.source}</span>}
+    </div>
+    {comp.members && (
+      <table class="roster-table">
+        <thead><tr><th>Office</th><th>Current holder</th></tr></thead>
+        <tbody>
+          {comp.members.map((m: any) => (
+            <tr>
+              <td>{m.office}</td>
+              <td>{m.holder ?? <span class="muted">{m.note ?? '—'}</span>}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )}
+    {comp.note && <p class="py-note-plain">{comp.note}</p>}
   </section>
 )}
